@@ -20,20 +20,25 @@
     --accent2:#0891b2;
     --card-stroke: rgba(255,255,255,0.06);
     --maxw:1180px;
+    --content-gap:22px;
   }
-  *{box-sizing:border-box}
+
+  /* Basic reset & performance */
+  *,*::before,*::after{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;
     background:
       radial-gradient(800px 420px at 8% 10%, rgba(6,182,212,0.04), transparent 10%),
       radial-gradient(700px 400px at 92% 90%, rgba(8,146,178,0.02), transparent 10%),
       linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 70%);
     color:#eaf4fb;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.45;
-    -webkit-font-feature-settings: "liga" 0; /* tiny perf hint */
+    -webkit-font-feature-settings: "liga" 0;
   }
   a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block;height:auto}
+
   .wrap{max-width:var(--maxw);margin:26px auto;padding:20px}
 
-  /* Blobs: hide on small screens (expensive blur) */
+  /* Decorative blobs - hide on small to save GPU */
   .blob{position:fixed;right:-120px;top:-80px;width:360px;height:360px;border-radius:50%;background: radial-gradient(circle at 30% 30%, rgba(8,140,170,0.18), transparent 30%), radial-gradient(circle at 70% 70%, rgba(3,80,110,0.12), transparent 30%);filter:blur(36px);pointer-events:none;z-index:0;mix-blend-mode:screen}
   .blob2{position:fixed;left:-120px;bottom:-100px;width:420px;height:420px;border-radius:50%;background: radial-gradient(circle at 40% 40%, rgba(6,182,212,0.06), transparent 30%), radial-gradient(circle at 70% 70%, rgba(8,146,178,0.04), transparent 30%);filter:blur(46px);pointer-events:none;z-index:0;mix-blend-mode:screen}
 
@@ -44,12 +49,24 @@
   .navlinks a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600;transition:all .14s ease;border:1px solid transparent;font-size:14px}
   .navlinks a:hover{background:linear-gradient(180deg, rgba(255,255,255,0.014), rgba(255,255,255,0.01));color:#fff;border:1px solid rgba(255,255,255,0.02)}
 
-  /* HERO (image + overlay + stars) - reduced heavy filters */
+  /* HERO (image + overlay + stars) */
   .hero{margin-top:20px;border-radius:14px;overflow:hidden;position:relative;display:flex;align-items:center;padding:44px 32px;height:420px;border:1px solid rgba(255,255,255,0.02);box-shadow:0 10px 30px rgba(2,8,20,0.48)}
   .hero-inner{max-width:880px;z-index:2;text-align:left}
   h1{font-size:clamp(28px, 5vw, 46px);margin:0 0 8px 0;line-height:1.02;letter-spacing:-0.5px}
   .headline-sub{color:var(--muted);font-size:clamp(13px,2.2vw,15px);margin-bottom:12px}
-  .headline-chip{display:inline-block;padding:10px 14px;border-radius:999px;background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(8,146,178,0.08));color:#dff8fb;font-weight:700;border:1px solid rgba(255,255,255,0.03);font-size:13px}
+  .headline-chip{
+    display:inline-block;
+    padding:10px 14px;
+    border-radius:999px;
+    background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(8,146,178,0.08));
+    color:#dff8fb;
+    font-weight:700;
+    border:1px solid rgba(255,255,255,0.03);
+    font-size:13px;
+    max-width:84%;
+    white-space:normal;
+    line-height:1.25;
+  }
 
   /* hero background container with picture element */
   .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
@@ -66,7 +83,7 @@
   .cta-secondary{background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));border:1px solid rgba(255,255,255,0.02);color:var(--muted)}
 
   /* GRID */
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:26px}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--content-gap);margin-top:26px}
   @media(max-width:980px){.grid{grid-template-columns:1fr;padding-bottom:18px}}
   @media(max-width:720px){.grid{grid-template-columns:1fr;gap:18px}}
 
@@ -89,49 +106,39 @@
   .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
   .skill-badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:700}
 
-  /* CERTS */
-  .cert-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-  .cert-item{width:220px;text-align:center;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.004));border:1px solid rgba(255,255,255,0.02)}
-  .cert-img{max-width:160px;border-radius:8px;display:block;margin:0 auto}
+  /* CERTS - center items & improve verify link */
+  .certs-grid{display:flex;flex-direction:column;gap:12px}
+  .cert-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;justify-content:center}
+  .cert-item{width:220px;text-align:center;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .cert-img{max-width:140px;border-radius:8px;display:block;margin:6px auto 12px}
+  .cert-text{font-weight:800;color:var(--muted);margin-bottom:6px}
+  .verify-link{display:inline-block;margin-top:6px;font-size:13px;color:var(--accent1);font-weight:800;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(6,182,212,0.04);border:1px solid rgba(6,182,212,0.06);transition:transform .14s,color .14s}
+  .verify-link:hover{color:#fff;background:linear-gradient(90deg,var(--accent1),var(--accent2));transform:translateY(-2px)}
 
-  /* CONTACT + COPY BUTTON alignment fix */
+  /* CONTACT + COPY BUTTON alignment */
   .contact-small{margin-top:12px;color:var(--muted);font-size:13px}
   .contact-small a{color:var(--accent1);font-weight:700}
   .contact-small a:hover{color:var(--accent2)}
 
-  .copy-wrap{display:flex;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
+  .copy-wrap{display:flex;align-items:center;gap:12px;margin-top:6px}
   .copy-wrap .email-col{display:flex;flex-direction:column}
-  .email-text{color:var(--muted);font-weight:800;word-break:break-word}
-  .copy-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;height:36px;min-width:70px;justify-content:center}
+  .email-text{color:var(--muted);font-weight:800}
+  .copy-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;height:36px}
   .copy-btn svg{display:block}
   .copy-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.03)}
   .copy-btn.copied{background:var(--accent1);color:#04121a;border-color:transparent}
 
   footer{text-align:center;margin-top:28px;color:var(--muted);font-size:13px;padding:18px 0}
 
-  /* Accessibility: reduce motion */
-  @media (prefers-reduced-motion: reduce) {
-    .hero-bg::before, .hero-bg::after { animation: none !important; transition: none !important; }
-    .glass, .project, .copy-btn { transition: none !important; }
-  }
-
-  /* Performance: disable star drift and blobs on small screens */
-  @media(max-width:980px){
-    .hero-bg::before{display:none}
-    .blob, .blob2{display:none}
-    nav{padding:10px}
-    .hero{padding:28px 20px;height:auto}
-  }
-
-  /* Further mobile sizing */
-  @media(max-width:720px){
-    .navlinks a{padding:8px 10px;font-size:13px}
-    .hero-inner{padding-right:8px}
-    .hero{padding:22px 14px}
-    h1{font-size:28px}
-    .headline-chip{font-size:12px;padding:8px 12px}
-    .grid{gap:14px}
+  /* Mobile optimizations */
+  @media (max-width:720px){
+    .blob,.blob2{display:none}                 /* save GPU/paint on mobile */
+    .hero{padding:28px;height:auto}
+    .hero-bg::before{display:none}             /* remove animated stars */
+    .hero-bg::after{background:linear-gradient(180deg, rgba(4,18,26,0.68), rgba(4,18,26,0.68))}
     .cert-item{width:48%}
+    .navlinks{gap:8px;font-size:13px}
+    .wrap{padding:14px}
   }
 </style>
 </head>
@@ -142,14 +149,14 @@
 
   <div class="wrap">
     <nav class="reveal" aria-label="Main navigation">
-      <div class="brand">Kamatham Simon Daniel</div>
-      <div class="navlinks" role="navigation" aria-label="Page sections">
+      <div class="brand">Simon</div>
+      <div class="navlinks">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#certs">Certifications</a>
-        <a href="resume.pdf" target="_blank" style="padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600">Resume</a>
+        <a href="resume.pdf" target="_blank" rel="noopener" style="padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600">Resume</a>
       </div>
     </nav>
 
@@ -157,12 +164,10 @@
     <section id="home" class="hero reveal" aria-label="hero">
       <div class="hero-bg" aria-hidden="true">
         <picture>
-          <!-- large desktop -->
-          <source srcset="assets/space-hero-1600.webp" type="image/webp" media="(min-width:1200px)">
-          <!-- tablet -->
+          <source srcset="assets/space-hero-1600.webp" type="image/webp" media="(min-width:980px)">
           <source srcset="assets/space-hero-900.webp" type="image/webp" media="(min-width:520px)">
-          <!-- mobile fallback -->
-          <img class="bg-img" src="assets/space-hero-600.jpg" alt="Nebula space background" loading="eager" fetchpriority="high" decoding="async" />
+          <!-- hero image: high priority for LCP -->
+          <img class="bg-img" src="assets/space-hero-600.jpg" alt="Nebula space background" loading="eager" fetchpriority="high" />
         </picture>
       </div>
 
@@ -170,26 +175,30 @@
         <h1>Simon</h1>
         <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready Cloud infrastructure and automation.</div>
         <div style="margin-top:10px">
-          <span class="headline-chip">AWS Solutions Architect — Associate (SAA) · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk)</span>
+          <!-- improved chip text (removed '—' and SAA) -->
+          <span class="headline-chip">
+            AWS Solutions Architect · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk)
+          </span>
         </div>
         <div class="hero-ctas">
-          <a href="resume.pdf" target="_blank" class="cta-btn cta-primary" aria-label="Download resume">Download Resume</a>
+          <a href="resume.pdf" target="_blank" class="cta-btn cta-primary" rel="noopener">Download Resume</a>
           <a href="#projects" class="cta-btn cta-secondary">See Projects</a>
         </div>
       </div>
     </section>
 
-    <div class="grid" role="main">
+    <div class="grid">
       <main>
-        <section id="about" class="glass reveal">
+        <section id="about" class="glass reveal delay-1">
           <h3>About</h3>
           <p style="margin-top:10px;color:var(--muted)">
             I design and deploy production-grade AWS architectures, focusing on reliability, security and cost optimization. I use Terraform for IaC, automate deployments using Jenkins/GitLab CI, and implement observability stacks with Prometheus, Grafana and Splunk.
           </p>
         </section>
 
-        <section id="projects" class="glass reveal" style="margin-top:18px">
+        <section id="projects" class="glass reveal delay-2" style="margin-top:18px">
           <h3>Featured Projects</h3>
+
           <div class="projects" style="margin-top:12px">
             <article class="project reveal">
               <h4>Gold Website Hosted on AWS (3-Tier Architecture)</h4>
@@ -231,10 +240,10 @@
           </div>
         </section>
 
-        <section id="skills" class="glass reveal" style="margin-top:18px">
+        <section id="skills" class="glass reveal delay-3" style="margin-top:18px">
           <h3>Skills & Tools</h3>
           <div class="skills">
-            <div class="skill-badge">AWS,GCP,AZURE</div>
+            <div class="skill-badge">AWS, GCP, Azure</div>
             <div class="skill-badge">Terraform</div>
             <div class="skill-badge">Linux</div>
             <div class="skill-badge">Docker</div>
@@ -249,30 +258,31 @@
       </main>
 
       <aside>
-        <section id="certs" class="glass reveal" style="min-width:260px">
+        <section id="certs" class="glass reveal delay-2">
           <h3>Certifications</h3>
+
           <div class="certs-grid">
             <div class="cert-row">
               <div class="cert-item">
                 <a class="cert-card" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
-                  <img src="assets/saa.png" class="cert-img" alt="AWS Solutions Architect Associate" loading="lazy" decoding="async" />
+                  <img src="assets/saa.png" class="cert-img" alt="AWS Solutions Architect Associate" loading="lazy" />
                 </a>
-                <div class="cert-text">AWS Solutions Architect — Associate (SAA-C03)</div>
+                <div class="cert-text">AWS Solutions Architect — Associate</div>
                 <a class="verify-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
               </div>
 
               <div class="cert-item">
                 <a class="cert-card" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
-                  <img src="assets/ccp.png" class="cert-img" alt="AWS Certified Cloud Practitioner" loading="lazy" decoding="async" />
+                  <img src="assets/ccp.png" class="cert-img" alt="AWS Certified Cloud Practitioner" loading="lazy" />
                 </a>
-                <div class="cert-text">AWS Certified Cloud Practitioner (CLF-C02)</div>
+                <div class="cert-text">AWS Certified Cloud Practitioner</div>
                 <a class="verify-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="glass reveal" style="margin-top:12px">
+        <section class="glass reveal delay-3" style="margin-top:18px">
           <h3>Contact</h3>
 
           <div class="contact-small">
@@ -312,9 +322,10 @@
   // set year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Copy email functionality (small, fast)
+  // Copy email functionality (fast, accessible)
   (function(){
-    const email = document.getElementById('emailText').textContent.trim();
+    const emailEl = document.getElementById('emailText');
+    const email = emailEl.textContent.trim();
     const btn = document.getElementById('copyEmailBtn');
     const btnText = document.getElementById('copyBtnText');
 
