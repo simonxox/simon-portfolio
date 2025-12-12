@@ -76,7 +76,7 @@
   }
 
   .hero-ctas{margin-top:20px;display:flex;gap:14px;align-items:center}
-  .cta-btn{padding:11px 22px;border-radius:999px;font-weight:700;font-size:14px;}
+  .cta-btn{padding:11px 22px;border-radius:999px;font-weight:700;font-size:14px;transition:transform .22s,box-shadow .22s;}
 
   .cta-primary{
     background:linear-gradient(90deg,var(--accent1),var(--accent2));
@@ -138,7 +138,23 @@
     text-decoration: underline;
   }
 
+  /* COPY BUTTON */
+  .copy-wrap{display:flex;align-items:center;gap:8px}
+  .email-text{color:var(--muted);font-weight:800}
+  .copy-btn{
+    display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;
+    background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04);
+    color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;
+    transition: transform .12s ease, background .12s ease, color .12s ease;
+  }
+  .copy-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.03)}
+  .copy-btn:active{transform:translateY(0)}
+  .copy-btn.copied{background:var(--accent1);color:#04121a;border-color:transparent}
+
   footer{text-align:center;margin-top:28px;color:var(--muted);padding:18px 0;font-size:13px}
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
@@ -296,22 +312,35 @@
       <section class="glass reveal" style="margin-top:18px">
         <h3>Contact</h3>
 
-        <div class="contact-small">
-          Email:
-          <strong>
-            <a href="mailto:simonchinnu13@gmail.com">simonchinnu13@gmail.com</a>
-          </strong>
+        <div class="contact-small copy-wrap" aria-live="polite">
+          <div>
+            <div style="color:var(--muted);font-size:13px">Email:</div>
+            <div class="email-text" id="emailText">simonchinnu13@gmail.com</div>
+          </div>
+
+          <!-- copy button -->
+          <button id="copyEmailBtn" class="copy-btn" type="button" aria-label="Copy email address">
+            <!-- simple clipboard icon (SVG) -->
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <path d="M16 3H8a2 2 0 0 0-2 2v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="8" y="7" width="11" height="13" rx="2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="copyBtnText">Copy</span>
+          </button>
         </div>
 
-        <div class="contact-small">
-          LinkedIn:
-          <a href="https://www.linkedin.com/in/simon-daniel-72801237a/" target="_blank">
-            https://www.linkedin.com/in/simon-daniel-72801237a/
-          </a>
+        <div class="contact-small" style="margin-top:12px">
+          <div style="color:var(--muted);font-size:13px">LinkedIn:</div>
+          <div>
+            <a href="https://www.linkedin.com/in/simon-daniel-72801237a/" target="_blank">
+              https://www.linkedin.com/in/simon-daniel-72801237a/
+            </a>
+          </div>
         </div>
 
-        <div class="contact-small">
-          Location: Hyderabad, India
+        <div class="contact-small" style="margin-top:12px">
+          <div style="color:var(--muted);font-size:13px">Location:</div>
+          <div>Hyderabad, India</div>
         </div>
 
       </section>
@@ -324,7 +353,46 @@
 </div>
 
 <script>
+  // set year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Copy email functionality
+  (function(){
+    const email = document.getElementById('emailText').textContent.trim();
+    const btn = document.getElementById('copyEmailBtn');
+    const btnText = document.getElementById('copyBtnText');
+
+    btn.addEventListener('click', async () => {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+
+        // visual feedback
+        btn.classList.add('copied');
+        const prev = btnText.textContent;
+        btnText.textContent = 'Copied!';
+        btn.setAttribute('aria-live', 'polite');
+
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btnText.textContent = prev;
+        }, 1800);
+      } catch (e) {
+        console.error('Copy failed', e);
+        btnText.textContent = 'Try again';
+        setTimeout(()=> btnText.textContent = 'Copy', 1600);
+      }
+    });
+  })();
 </script>
 
 </body>
