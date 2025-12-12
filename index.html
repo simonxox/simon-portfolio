@@ -8,109 +8,105 @@
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <style>
   :root{
-    --bg-dark:#050714;
-    --panel:#0b1220;
+    --bg-1:#061025;
+    --bg-2:#071229;
+    --glass-outer: rgba(255,255,255,0.03);
+    --glass-inner: rgba(255,255,255,0.02);
     --muted:#9fb0c1;
     --accent:#06b6d4;
-    --glass-1: rgba(255,255,255,0.03);
-    --glass-2: rgba(255,255,255,0.02);
-    --card-border: rgba(255,255,255,0.06);
+    --card-stroke: rgba(255,255,255,0.06);
   }
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:
-    linear-gradient(180deg,#041226 0%, #071229 50%), var(--bg-dark);
-    color:#e8f3fb;-webkit-font-smoothing:antialiased}
+    radial-gradient(900px 500px at 8% 12%, rgba(6,182,212,0.03), transparent),
+    linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 60%);color:#eaf4fb;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1200px;margin:28px auto;padding:20px}
+  .wrap{max-width:1180px;margin:28px auto;padding:20px}
 
-  /* NAV */
-  nav{position:sticky;top:10px;z-index:40;backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(6px);
-      background:linear-gradient(180deg, rgba(4,8,12,0.35), rgba(4,8,12,0.15));
-      border-radius:12px;padding:10px 16px;display:flex;align-items:center;gap:18px;box-shadow:0 6px 20px rgba(2,6,12,0.6)}
-  .brand{font-weight:800;letter-spacing:0.2px}
-  .navlinks{margin-left:auto;display:flex;gap:14px;align-items:center}
+  /* sticky nav with subtle glass */
+  nav{
+    position:sticky;top:12px;z-index:50;display:flex;align-items:center;padding:10px 14px;border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid var(--card-stroke);backdrop-filter: blur(8px) saturate(120%);
+    box-shadow:0 8px 26px rgba(2,6,12,0.55)
+  }
+  .brand{font-weight:800}
+  .navlinks{margin-left:auto;display:flex;gap:12px;align-items:center}
   .navlinks a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600}
   .navlinks a:hover{background:rgba(255,255,255,0.02);color:#fff}
 
-  /* HERO */
+  /* hero — full bleed feel inside container, clean (no right texts) */
   .hero{
-    margin-top:18px;border-radius:16px;overflow:hidden;position:relative;height:420px;
-    background-image: url(''); /* leave empty so user can replace with big bg file */
-    background-color: linear-gradient(180deg,#071229,#041226);
-    display:flex;align-items:center;
+    margin-top:18px;border-radius:16px;overflow:hidden;position:relative;height:420px;display:flex;align-items:center;
     background-size:cover;background-position:center;
   }
-  .hero-gradient{position:absolute;inset:0;background:linear-gradient(120deg, rgba(4,12,20,0.35), rgba(6,18,28,0.6));mix-blend-mode:multiply}
-  .hero-inner{position:relative;padding:44px;max-width:900px}
-  h1{font-size:44px;margin:0 0 8px 0;line-height:1.02}
-  .lead{color:var(--muted);font-size:16px;margin-bottom:14px}
-  .hero-ctas{display:flex;gap:10px}
-  .btn{background:linear-gradient(90deg,var(--accent),#0891b2);color:#04121a;padding:10px 16px;border-radius:10px;font-weight:700}
-  .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(4,10,18,0.45), rgba(4,10,18,0.6));mix-blend-mode:multiply}
+  .hero-inner{position:relative;padding:48px;max-width:900px}
+  h1{font-size:42px;margin:0 0 8px 0;line-height:1.02}
+  .headline-sub{color:var(--muted);font-size:15px;margin-bottom:10px}
+  .headline-highlight{
+    margin-top:12px;color:#dff7fb;background:linear-gradient(90deg, rgba(6,182,212,0.16), rgba(8,145,178,0.08));
+    display:inline-block;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);
+    font-weight:700;font-size:14px;
+  }
+  .hero-ctas{display:flex;gap:10px;margin-top:14px}
 
-  /* GRID content */
-  .grid{display:grid;grid-template-columns:1fr 420px;gap:22px;margin-top:22px}
+  /* main grid: left content + right column with smaller cards */
+  .grid{display:grid;grid-template-columns:1fr 380px;gap:22px;margin-top:22px}
   @media(max-width:980px){.grid{grid-template-columns:1fr}}
 
-  /* GLASS CARD */
-  .card{
+  /* universal glass card */
+  .glass {
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid var(--card-border);border-radius:14px;padding:18px;box-shadow:0 12px 30px rgba(2,6,12,0.6);
-    backdrop-filter: blur(8px) saturate(120%);-webkit-backdrop-filter:blur(8px) saturate(120%);
+    border-radius:14px;padding:18px;border:1px solid var(--card-stroke);
+    box-shadow:0 12px 32px rgba(2,6,12,0.6);backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    transition:transform .25s ease, box-shadow .25s ease;
   }
-  .card h3{margin:0 0 8px 0}
-  p,li{color:var(--muted)}
+  .glass:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(2,6,12,0.7)}
+  h3{margin:0 0 10px 0}
+  p,li{color:var(--muted);margin:0}
 
   /* projects list */
   .projects{display:grid;gap:12px}
-  .project-row{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:rgba(255,255,255,0.01)}
-  .proj-icon{width:72px;height:72px;border-radius:10px;background:#032033;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800}
+  .project{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)}
+  .project .icon{width:66px;height:66px;border-radius:12px;background:#032033;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800}
 
-  /* certs (no backing rectangle) */
-  .cert-grid{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:12px}
-  .cert{
-    display:block;border-radius:12px;padding:6px;transition:transform .22s,box-shadow .22s
-  }
-  .cert img{display:block;width:220px;height:auto;border-radius:10px;box-shadow:0 14px 36px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.04)}
-  .cert .label{margin-top:8px;color:var(--muted);text-align:center;font-weight:700}
+  /* skills badges */
+  .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .skill-badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:700}
 
-  /* skills */
-  .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-  .badge{padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:999px;color:var(--muted);font-weight:700;border:1px solid rgba(255,255,255,0.03)}
+  /* certifications row (no dark rectangle behind) */
+  .cert-row{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:12px}
+  .cert-link{display:block;border-radius:12px;padding:6px;transition:transform .22s}
+  .cert-link:hover{transform:translateY(-8px)}
+  .cert-img{max-width:220px;width:100%;height:auto;border-radius:10px;box-shadow:0 16px 38px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.04)}
+  .cert-text{margin-top:8px;color:var(--muted);font-weight:700;text-align:center}
 
-  /* floating assistant bubble */
-  .assistant{
-    position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;gap:12px;align-items:flex-end;
-  }
-  .assistant .bubble{
-    max-width:520px;background:linear-gradient(180deg, rgba(2,6,12,0.9), rgba(2,6,12,0.85));color:#fff;padding:14px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.6);font-size:14px
-  }
-  .assistant .avatar{
-    width:62px;height:62px;border-radius:999px;background:linear-gradient(135deg,#06b6d4,#0891b2);display:flex;align-items:center;justify-content:center;font-weight:800;color:#04121a;font-size:18px;border:4px solid rgba(255,255,255,0.03)
-  }
+  /* assistant bubble */
+  .assistant{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+  .assistant .bubble{max-width:420px;background:linear-gradient(180deg, rgba(3,6,10,0.92), rgba(2,4,8,0.85));color:#fff;padding:12px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.6);font-size:14px}
+  .assistant .avatar{width:60px;height:60px;border-radius:999px;background:linear-gradient(135deg,#06b6d4,#0891b2);display:flex;align-items:center;justify-content:center;font-weight:800;color:#04121a;border:3px solid rgba(255,255,255,0.03)}
 
-  /* footer */
-  footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px;padding:20px 0}
-
-  /* small tweaks */
+  footer{text-align:center;margin-top:28px;color:var(--muted);font-size:13px;padding:18px 0}
   .muted{color:var(--muted)}
-  .small{font-size:13px}
+  .small{font-size:13px;color:var(--muted)}
 
-  /* animations */
-  .reveal{opacity:0;transform:translateY(12px);animation:revealUp .6s ease forwards}
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(10px);animation:revealUp .6s ease forwards}
   .reveal.delay-1{animation-delay:.12s}.delay-2{animation-delay:.24s}.delay-3{animation-delay:.36s}
   @keyframes revealUp{to{opacity:1;transform:none}}
 
   @media(max-width:720px){
-    h1{font-size:30px}
-    .hero{height:320px;padding:18px}
-    .cert img{max-width:160px}
+    h1{font-size:28px}
+    .cert-img{max-width:160px}
   }
 </style>
 </head>
 <body>
-
   <div class="wrap">
+
+    <!-- NAV -->
     <nav class="reveal">
       <div class="brand">Kamatham Simon Daniel</div>
       <div class="navlinks">
@@ -119,135 +115,125 @@
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#certs">Certifications</a>
-        <a href="resume.pdf" target="_blank" class="btn" style="padding:8px 12px;margin-left:10px">Resume</a>
+        <a href="resume.pdf" target="_blank" class="small" style="padding:8px 11px;background:linear-gradient(90deg,var(--accent),#0891b2);color:#04121a;border-radius:8px;font-weight:700">Resume</a>
       </div>
     </nav>
 
-    <!-- HERO -->
-    <section id="home" class="hero" aria-label="hero" style="background-image: linear-gradient(120deg, rgba(10,16,26,0.55), rgba(10,16,26,0.45)), url('');">
-      <div class="hero-gradient"></div>
+    <!-- HERO (clean - no right texts) -->
+    <section id="home" class="hero reveal" style="background-image: linear-gradient(120deg, rgba(5,10,18,0.45), rgba(6,14,22,0.6)), url('');">
+      <div class="hero-overlay"></div>
       <div class="hero-inner">
-        <h1 class="reveal">Kamatham Simon Daniel</h1>
-        <div class="lead reveal delay-1">Cloud & DevOps Engineer — Infrastructure as Code, CI/CD, Observability</div>
-        <div class="hero-ctas reveal delay-2">
+        <h1>Kamatham Simon Daniel</h1>
+        <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready AWS infrastructure and automation.</div>
+
+        <!-- Accurate single highlight line (from resume) -->
+        <div class="headline-highlight">
+          AWS Solutions Architect — Associate (SAA) · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk)
+        </div>
+
+        <div class="hero-ctas" style="margin-top:14px">
           <a class="btn" href="resume.pdf" target="_blank">Download Resume</a>
-          <a class="btn secondary" href="#projects">See Projects</a>
+          <a class="btn" href="#projects" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">See Projects</a>
         </div>
       </div>
     </section>
 
-    <!-- GRID: main + sidebar -->
+    <!-- GRID area -->
     <div class="grid">
       <main>
         <!-- ABOUT -->
-        <section id="about" class="card reveal delay-1">
+        <section id="about" class="glass reveal delay-1">
           <h3>About</h3>
-          <p>I design and deploy production-grade AWS architectures. I specialise in Terraform modules, CI/CD automation (Jenkins / GitLab CI), monitoring & observability (Prometheus, Grafana, CloudWatch, Splunk) and cost-focused secure designs.</p>
-
-          <div style="margin-top:12px">
-            <strong>What I do</strong>
-            <ul>
-              <li>Infrastructure as Code with Terraform & Terragrunt</li>
-              <li>CI/CD: Maven → Jenkins → Tomcat, artifact storage (S3)</li>
-              <li>Monitoring & Logging: Prometheus, Grafana, Splunk</li>
-            </ul>
-          </div>
+          <p class="muted" style="margin-top:10px">
+            I design and deploy production-grade AWS architectures, focusing on reliability, security and cost optimization. I use Terraform for IaC, automate deployments using Jenkins/GitLab CI, and implement observability stacks with Prometheus, Grafana and Splunk.
+          </p>
         </section>
 
-        <!-- Projects -->
-        <section id="projects" class="card reveal delay-2">
+        <!-- PROJECTS -->
+        <section id="projects" class="glass reveal delay-2" style="margin-top:18px">
           <h3>Featured Projects</h3>
-          <div class="projects">
-            <div class="project-row">
-              <div class="proj-icon">TF</div>
+
+          <div class="projects" style="margin-top:12px">
+            <div class="project">
+              <div class="icon">TF</div>
               <div>
                 <strong>Terraform Multi-env Modules</strong>
-                <p class="muted small">Reusable modules: VPC, EC2, RDS, IAM, Security Groups with Terragrunt environment separation.</p>
-                <a href="#" class="small">GitHub → (add repo link)</a>
+                <p class="small muted" style="margin-top:6px">Reusable modules: VPC, EC2, RDS, IAM & Security Groups with Terragrunt environment separation.</p>
+                <a href="#" class="small" style="color:var(--accent)">GitHub → (add repo link)</a>
               </div>
             </div>
 
-            <div class="project-row">
-              <div class="proj-icon">CI</div>
+            <div class="project">
+              <div class="icon">CI</div>
               <div>
                 <strong>CI/CD: Maven → Jenkins → Tomcat</strong>
-                <p class="muted small">Jenkins pipelines to build, test, and deploy WARs to Tomcat with artifact storage on S3.</p>
-                <a href="#" class="small">Pipeline → (add link)</a>
+                <p class="small muted" style="margin-top:6px">Jenkins pipelines to build, test, and deploy WARs with artifacts stored on S3.</p>
+                <a href="#" class="small" style="color:var(--accent)">Pipeline → (add link)</a>
               </div>
             </div>
 
-            <div class="project-row">
-              <div class="proj-icon">OBS</div>
+            <div class="project">
+              <div class="icon">OBS</div>
               <div>
                 <strong>Monitoring & Logging</strong>
-                <p class="muted small">Prometheus + Grafana dashboards, CloudWatch integration and Splunk forwarders for centralized logs & alerts.</p>
-                <a href="#" class="small">Dashboards → (add link)</a>
+                <p class="small muted" style="margin-top:6px">Prometheus + Grafana dashboards, CloudWatch integration and Splunk forwarders for centralized logs and alerts.</p>
+                <a href="#" class="small" style="color:var(--accent)">Dashboards → (add link)</a>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Skills -->
-        <section id="skills" class="card reveal delay-3">
+        <!-- SKILLS -->
+        <section id="skills" class="glass reveal delay-3" style="margin-top:18px">
           <h3>Skills & Tools</h3>
           <div class="skills">
-            <div class="badge">AWS (SAA)</div>
-            <div class="badge">Terraform</div>
-            <div class="badge">Linux</div>
-            <div class="badge">Docker</div>
-            <div class="badge">Jenkins</div>
-            <div class="badge">GitLab CI</div>
-            <div class="badge">Prometheus</div>
-            <div class="badge">Grafana</div>
-            <div class="badge">Splunk</div>
-            <div class="badge">Python</div>
+            <div class="skill-badge">AWS (SAA)</div>
+            <div class="skill-badge">Terraform</div>
+            <div class="skill-badge">Linux</div>
+            <div class="skill-badge">Docker</div>
+            <div class="skill-badge">Jenkins</div>
+            <div class="skill-badge">GitLab CI</div>
+            <div class="skill-badge">Prometheus</div>
+            <div class="skill-badge">Grafana</div>
+            <div class="skill-badge">Splunk</div>
+            <div class="skill-badge">Python</div>
+          </div>
+        </section>
+      </main>
+
+      <!-- RIGHT column -->
+      <aside>
+        <!-- Certifications card (clean — no dark rectangle behind badges) -->
+        <section id="certs" class="glass reveal delay-2">
+          <h3>Certifications</h3>
+
+          <div class="cert-row">
+            <a class="cert-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
+              <img src="saa.png" alt="AWS Solutions Architect Associate" class="cert-img"/>
+              <div class="cert-text">AWS Solutions Architect — Associate (SAA)</div>
+            </a>
+
+            <a class="cert-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
+              <img src="ccp.png" alt="AWS Cloud Practitioner" class="cert-img"/>
+              <div class="cert-text">AWS Certified Cloud Practitioner</div>
+            </a>
           </div>
         </section>
 
-        <!-- certifications anchor to show below in right column visually too -->
-        <div style="height:18px"></div>
-      </main>
-
-      <!-- RIGHT: Sidebar cards like Shreyas -->
-      <aside>
-        <div class="card reveal delay-2">
-          <h3 style="margin-bottom:8px">Profile Highlights</h3>
-          <p class="muted small">AWS Solutions Architect (SAA) • Cloud Practitioner • Terraform practitioner • CI/CD & Observability</p>
-
-          <div style="margin-top:14px">
-            <strong>Availability</strong>
-            <p class="muted small">Based in Hyderabad — open to remote & hybrid roles.</p>
-          </div>
-        </div>
-
-        <div id="certs" class="card reveal delay-3">
-          <h3>Certifications</h3>
-
-          <div class="cert-grid">
-            <a class="cert" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
-              <img src="saa.png" alt="AWS Solutions Architect Associate" />
-              <div class="label">AWS Solutions Architect — Associate (SAA)</div>
-            </a>
-
-            <a class="cert" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
-              <img src="ccp.png" alt="AWS Cloud Practitioner" />
-              <div class="label">AWS Certified Cloud Practitioner</div>
-            </a>
-          </div>
-        </div>
-
-        <div class="card reveal delay-3" style="margin-top:18px">
+        <!-- Contact / Links -->
+        <section class="glass reveal delay-3" style="margin-top:18px">
           <h3>Contact</h3>
-          <p class="muted small">Email: <strong>your-email@example.com</strong></p>
-          <p class="muted small">LinkedIn: <a href="#" target="_blank">Add LinkedIn</a></p>
-        </div>
+          <p class="small muted" style="margin-top:8px">Email: <strong>your-email@example.com</strong></p>
+          <p class="small muted">LinkedIn: <a href="#" target="_blank">Add LinkedIn</a></p>
+          <p class="small muted">Location: Hyderabad, India</p>
+        </section>
       </aside>
     </div>
 
     <footer>© <span id="year"></span> Kamatham Simon Daniel — Built with ❤️</footer>
   </div>
 
-  <!-- assistant bubble -->
+  <!-- floating assistant -->
   <div class="assistant" aria-hidden="false">
     <div class="bubble">Hi — I'm Simon's AI assistant. Ask about projects, skills, or certifications.</div>
     <div class="avatar">SD</div>
@@ -255,9 +241,10 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  // Smooth scroll for nav links
+
+  // smooth nav scroll
   document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
+    a.addEventListener('click', e=>{
       e.preventDefault();
       const id = a.getAttribute('href').slice(1);
       const el = document.getElementById(id);
