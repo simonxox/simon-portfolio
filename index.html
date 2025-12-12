@@ -14,8 +14,6 @@
     --accent1:#06b6d4;
     --accent2:#0891b2;
     --card-stroke: rgba(255,255,255,0.06);
-    --glass-light: rgba(255,255,255,0.03);
-    --glass-strong: rgba(255,255,255,0.06);
   }
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial,Helvetica,sans-serif;
@@ -24,12 +22,10 @@
       radial-gradient(700px 400px at 92% 90%, rgba(8,146,178,0.02), transparent 10%),
       linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 70%);
     color:#eaf4fb;-webkit-font-smoothing:antialiased;
-    -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1180px;margin:26px auto;padding:20px}
 
-  /* subtle floating blob backgrounds for liquid feel */
   .blob {
     position:fixed;right:-120px;top:-80px;width:360px;height:360px;border-radius:50%;
     background: radial-gradient(circle at 30% 30%, rgba(8,140,170,0.18), transparent 30%),
@@ -43,7 +39,7 @@
     filter:blur(46px);pointer-events:none;z-index:0;mix-blend-mode:screen;
   }
 
-  /* NAV (liquid glass) */
+  /* NAV */
   nav{
     position:sticky;top:14px;z-index:60;display:flex;align-items:center;padding:12px 16px;border-radius:14px;
     background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
@@ -61,7 +57,7 @@
     color:#fff;border:1px solid rgba(255,255,255,0.025)
   }
 
-  /* HERO (liquid card) */
+  /* HERO */
   .hero{
     margin-top:20px;border-radius:18px;overflow:hidden;position:relative;display:flex;align-items:center;
     background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
@@ -76,8 +72,6 @@
   .hero-inner{max-width:960px;z-index:2}
   h1{font-size:46px;margin:0 0 8px 0;line-height:1.02;letter-spacing:-0.5px}
   .headline-sub{color:var(--muted);font-size:15px;margin-bottom:12px}
-
-  /* pill highlight (fatter liquid) */
   .headline-chip{
     display:inline-block;padding:12px 18px;border-radius:999px;
     background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(8,146,178,0.08));
@@ -86,7 +80,6 @@
     backdrop-filter: blur(6px);
   }
 
-  /* CTA buttons (glow & soft) */
   .hero-ctas{margin-top:20px;display:flex;gap:14px;align-items:center}
   .cta-btn{padding:11px 22px;border-radius:999px;font-weight:700;font-size:14px;transition:transform .22s,box-shadow .22s;display:inline-block}
   .cta-primary{
@@ -105,7 +98,7 @@
   .grid{display:grid;grid-template-columns:1fr 400px;gap:26px;margin-top:26px}
   @media(max-width:980px){.grid{grid-template-columns:1fr;padding-bottom:18px}}
 
-  /* universal glass card (stronger liquid look) */
+  /* GLASS cards */
   .glass{
     background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
     border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.03);
@@ -116,7 +109,7 @@
   h3{margin:0 0 12px 0}
   p,li{color:var(--muted);margin:0}
 
-  /* PROJECTS area - liquid project cards with inner glass lines */
+  /* PROJECTS */
   .projects{display:grid;gap:14px}
   .project{
     display:block;padding:18px;border-radius:14px;
@@ -127,22 +120,28 @@
   .project h4{margin:0 0 6px 0}
   .project .meta{color:var(--muted);font-size:13px;margin:8px 0}
   .project ul{margin:8px 0 0 18px;color:var(--muted);line-height:1.5}
-
-  /* project tools badges */
   .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
   .tool{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);font-weight:700;color:var(--muted);font-size:13px}
 
-  /* skills */
+  /* SKILLS */
   .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
   .skill-badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:700}
 
-  /* certifications */
-  .cert-row{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:12px}
-  .cert-card{display:block;border-radius:12px;padding:6px;transition:transform .22s;background:transparent}
-  .cert-card:hover{transform:translateY(-6px)}
-  .cert-img{max-width:220px;width:100%;height:auto;border-radius:10px;box-shadow:0 18px 46px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.04)}
-  .cert-text{margin-top:8px;color:var(--muted);font-weight:700;text-align:center;font-size:14px}
-  .verify-link{display:block;margin-top:6px;text-align:center;font-size:13px;color:var(--accent1);font-weight:700}
+  /* CERTIFICATIONS: improved alignment */
+  .certs-grid{
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .cert-row{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:12px;justify-content:flex-start}
+  .cert-item{
+    width:220px; /* fixed width keeps alignment consistent */
+    display:flex;flex-direction:column;align-items:center;text-align:center;padding:12px;border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    border:1px solid rgba(255,255,255,0.02);
+    box-shadow:0 12px 34px rgba(2,8,20,0.45);
+  }
+  .cert-img{max-width:160px;width:100%;height:auto;border-radius:8px;box-shadow:0 16px 38px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.04)}
+  .cert-text{margin-top:12px;color:var(--muted);font-weight:800;font-size:15px}
+  .verify-link{display:inline-block;margin-top:8px;font-size:13px;color:var(--accent1);font-weight:700}
 
   .contact-small{margin-top:12px;color:var(--muted);font-size:13px}
 
@@ -155,21 +154,18 @@
 
   @media(max-width:720px){
     h1{font-size:28px}
-    .cert-img{max-width:160px}
+    .cert-img{max-width:140px}
     .hero{height:auto;padding:28px}
-    .navlinks{gap:8px}
     .grid{grid-template-columns:1fr}
+    .cert-item{width:46%;} /* two across on small screens */
   }
 </style>
 </head>
 <body>
-  <!-- decorative blobs -->
   <div class="blob" aria-hidden="true"></div>
   <div class="blob2" aria-hidden="true"></div>
 
   <div class="wrap">
-
-    <!-- NAV -->
     <nav class="reveal">
       <div class="brand">Kamatham Simon Daniel</div>
       <div class="navlinks">
@@ -182,16 +178,13 @@
       </div>
     </nav>
 
-    <!-- HERO -->
     <section id="home" class="hero reveal" aria-label="hero">
       <div class="hero-inner">
         <h1>Kamatham Simon Daniel</h1>
         <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready AWS infrastructure and automation.</div>
-
         <div style="margin-top:10px">
           <span class="headline-chip">AWS Solutions Architect — Associate (SAA) · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk)</span>
         </div>
-
         <div class="hero-ctas">
           <a href="resume.pdf" target="_blank" class="cta-btn cta-primary">Download Resume</a>
           <a href="#projects" class="cta-btn cta-secondary">See Projects</a>
@@ -199,7 +192,6 @@
       </div>
     </section>
 
-    <!-- GRID -->
     <div class="grid">
       <main>
         <section id="about" class="glass reveal delay-1">
@@ -211,9 +203,7 @@
 
         <section id="projects" class="glass reveal delay-2" style="margin-top:18px">
           <h3>Featured Projects</h3>
-
           <div class="projects" style="margin-top:12px">
-            <!-- Project 1 -->
             <article class="project reveal">
               <h4>Gold Website Hosted on AWS (3-Tier Architecture)</h4>
               <div class="meta"><strong>Tools:</strong> AWS (EC2, ALB, RDS, S3), Terraform, Jenkins CI/CD</div>
@@ -229,7 +219,6 @@
               </div>
             </article>
 
-            <!-- Project 2 -->
             <article class="project reveal">
               <h4>Automated Gold Price Notification System (AWS SNS Subscription)</h4>
               <div class="meta"><strong>Tools:</strong> AWS SNS, Lambda/Python, Docker, Terraform</div>
@@ -245,7 +234,6 @@
               </div>
             </article>
 
-            <!-- Project 3 -->
             <article class="project reveal">
               <h4>Kubernetes-based Gold Price Processing System (CronJob + Docker + EKS)</h4>
               <div class="meta"><strong>Tools:</strong> Kubernetes (EKS), Docker, Python</div>
@@ -260,7 +248,7 @@
               </div>
             </article>
 
-            <!-- previous short projects / placeholders (kept for continuity) -->
+            <!-- retained earlier items -->
             <article class="project reveal">
               <h4>Terraform Multi-env Modules</h4>
               <div class="meta">Reusable modules: VPC, EC2, RDS, IAM & Security Groups with Terragrunt separation.</div>
@@ -302,23 +290,26 @@
         <section id="certs" class="glass reveal delay-2">
           <h3>Certifications</h3>
 
-          <div class="cert-row">
-            <div>
-              <a class="cert-card" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank">
-                <img src="saa.png" class="cert-img" alt="AWS SAA"/>
-              </a>
-              <div class="cert-text">AWS Solutions Architect — Associate (SAA-C03)</div>
-              <a class="verify-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank">Verify on Credly →</a>
-            </div>
+          <div class="certs-grid">
+            <div class="cert-row">
+              <div class="cert-item">
+                <a class="cert-card" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
+                  <img src="saa.png" class="cert-img" alt="AWS Solutions Architect Associate"/>
+                </a>
+                <div class="cert-text">AWS Solutions Architect — Associate (SAA)</div>
+                <a class="verify-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
+              </div>
 
-            <div>
-              <a class="cert-card" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank">
-                <img src="ccp.png" class="cert-img" alt="AWS CCP"/>
-              </a>
-              <div class="cert-text">AWS Certified Cloud Practitioner (CLF-C02)</div>
-              <a class="verify-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank">Verify on Credly →</a>
+              <div class="cert-item">
+                <a class="cert-card" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
+                  <img src="ccp.png" class="cert-img" alt="AWS Certified Cloud Practitioner"/>
+                </a>
+                <div class="cert-text">AWS Certified Cloud Practitioner</div>
+                <a class="verify-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
+              </div>
             </div>
           </div>
+
         </section>
 
         <section class="glass reveal delay-3" style="margin-top:18px">
@@ -346,9 +337,9 @@
     });
   });
 
-  // small reveal stagger
+  // reveal stagger
   document.querySelectorAll('.reveal').forEach((el,i)=>{
-    el.style.animationDelay = (i*0.08)+'s';
+    el.style.animationDelay = (i*0.06)+'s';
   });
 </script>
 </body>
