@@ -6,7 +6,6 @@
 <title>Kamatham Simon Daniel — Cloud & DevOps</title>
 <meta name="description" content="Kamatham Simon Daniel — Cloud & DevOps Engineer. Terraform, CI/CD, Monitoring, AWS SAA."/>
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
 <style>
   :root{
     --bg:#061025; --panel:#0b1624; --muted:#9fb0c1; --accent:#06b6d4;
@@ -14,10 +13,9 @@
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:Inter,system-ui,Arial;background:
-    radial-gradient(900px 500px at 10% 10%, rgba(6,182,212,0.06), transparent),
+    radial-gradient(900px 500px at 10% 10%, rgba(6,182,212,0.04), transparent),
     linear-gradient(180deg,#041226 0%, #071229 60%);
-    color:#e8f3fb;line-height:1.5
-  }
+    color:#e8f3fb;line-height:1.5}
   .container{max-width:1080px;margin:40px auto;padding:24px}
 
   /* Header */
@@ -49,138 +47,116 @@
   .proj:hover{transform:translateY(-4px)}
   .proj-icon{width:70px;height:70px;background:#032033;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#06b6d4}
 
-  /* Certifications */
-  .cert-box{
-    padding:18px;
-    border-radius:12px;
-    margin-top:10px;
-    background:linear-gradient(135deg,#0c1d33,#0b1526);
-    border:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 10px 30px rgba(2,6,15,0.8);
-    animation:fadeInUp 1.1s ease both;
-  }
-  .cert-item{
-    font-size:20px;
-    font-weight:700;
-    margin-bottom:10px;
-    color:#06b6d4;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .cert-item span{
-    font-size:26px;
+  /* Certifications (big + clickable) */
+  .cert-row{display:flex;gap:24px;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .cert-link{display:block;border-radius:14px;padding:10px;background:linear-gradient(180deg,#071827,#071226);box-shadow:0 10px 30px rgba(2,6,12,0.5);transition:transform .25s, box-shadow .25s}
+  .cert-link:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(2,6,12,0.7)}
+  .cert-img{display:block;max-width:220px;width:100%;height:auto;border-radius:10px}
+  .cert-label{margin-top:8px;color:var(--muted);font-weight:700;text-align:center}
+
+  /* responsive */
+  @media(max-width:880px){
+    .avatar{width:78px;height:78px;font-size:28px}
+    .cert-row{justify-content:center}
+    .cert-img{max-width:160px}
   }
 
   footer{text-align:center;margin-top:40px;color:var(--muted);font-size:14px}
-
   @keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 </style>
 </head>
-
 <body>
-<div class="container">
-
-  <!-- HEADER -->
-  <header>
-    <div class="avatar">SD</div>
-    <div>
-      <h1>Kamatham Simon Daniel</h1>
-      <p class="sub">Cloud & DevOps Engineer • AWS SAA • Terraform • CI/CD • Monitoring • Hyderabad, IN</p>
-
-      <div class="hero-actions">
-        <a class="btn" href="resume.pdf" target="_blank">Download Resume</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- ABOUT -->
-  <section class="card">
-    <h3>About Me</h3>
-    <p>
-      I design and deploy production-ready cloud architectures on AWS. My strengths include Terraform, CI/CD pipelines,
-      monitoring solutions, cost optimisation, and secure DevOps practices. I build reliable, automated, and scalable
-      cloud environments suitable for real-world workloads.
-    </p>
-
-    <h4 style="margin-top:14px">What I Do</h4>
-    <ul>
-      <li>Build & manage AWS infrastructure (VPC, EC2, RDS, ElastiCache, ALB, CloudFront)</li>
-      <li>Infrastructure as Code with Terraform & Terragrunt</li>
-      <li>CI/CD pipelines using Jenkins, Maven, GitLab CI</li>
-      <li>Monitoring & Observability using Prometheus, Grafana, CloudWatch, Splunk</li>
-    </ul>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="card">
-    <h3>Featured Projects</h3>
-
-    <div class="proj" style="margin-top:12px">
-      <div class="proj-icon">TF</div>
+  <div class="container">
+    <header>
+      <div class="avatar">SD</div>
       <div>
-        <strong>Terraform Multi-Environment Modules</strong>
-        <p>Reusable modules for VPC, EC2, RDS, IAM & SGs with Terragrunt-based environment automation.</p>
+        <h1>Kamatham Simon Daniel</h1>
+        <p class="sub">Cloud & DevOps Engineer • AWS Solutions Architect (Associate) • Cloud Practitioner — Hyderabad, IN</p>
+        <div class="hero-actions">
+          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <div class="proj">
-      <div class="proj-icon">CI</div>
-      <div>
-        <strong>CI/CD: Maven → Jenkins → Tomcat</strong>
-        <p>Automated build, test, artifact upload to S3, and continuous deployment to Apache Tomcat.</p>
+    <section class="card">
+      <h3>About Me</h3>
+      <p>I design and deploy production-ready cloud architectures on AWS. My strengths include Terraform, CI/CD pipelines, monitoring & observability, and secure, cost-conscious designs for real-world workloads.</p>
+
+      <h4 style="margin-top:14px">Core Work</h4>
+      <ul>
+        <li>Infrastructure as Code with Terraform & Terragrunt</li>
+        <li>CI/CD: Maven → Jenkins → Tomcat, artifact storage (S3)</li>
+        <li>Monitoring & Logging: Prometheus, Grafana, CloudWatch, Splunk</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>Featured Projects</h3>
+
+      <div class="proj" style="margin-top:12px">
+        <div class="proj-icon">TF</div>
+        <div>
+          <strong>Terraform Multi-Environment Modules</strong>
+          <p>Reusable modules for VPC, EC2, RDS, IAM & Security Groups with environment isolation (dev/test/prod).</p>
+        </div>
       </div>
-    </div>
 
-    <div class="proj">
-      <div class="proj-icon">OBS</div>
-      <div>
-        <strong>Monitoring & Logging Stack</strong>
-        <p>Prometheus + Grafana dashboards, CloudWatch metrics integration & Splunk logging pipeline.</p>
+      <div class="proj">
+        <div class="proj-icon">CI</div>
+        <div>
+          <strong>CI/CD: Maven → Jenkins → Tomcat</strong>
+          <p>Automated build/test, artifact upload to S3, and continuous deployment to Apache Tomcat/EC2.</p>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- SKILLS -->
-  <section class="card">
-    <h3>Skills & Tools</h3>
-    <div class="skills">
-      <div class="chip">AWS (SAA)</div>
-      <div class="chip">Terraform</div>
-      <div class="chip">Linux</div>
-      <div class="chip">Docker</div>
-      <div class="chip">Jenkins</div>
-      <div class="chip">GitLab CI</div>
-      <div class="chip">Prometheus</div>
-      <div class="chip">Grafana</div>
-      <div class="chip">Splunk</div>
-      <div class="chip">Python</div>
-      <div class="chip">RDS</div>
-      <div class="chip">ElastiCache</div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section class="card">
-    <h3>Certifications</h3>
-
-    <div class="cert-box">
-      <div class="cert-item">
-        <span>🏆</span> AWS Solutions Architect — Associate (SAA)
+      <div class="proj">
+        <div class="proj-icon">OBS</div>
+        <div>
+          <strong>Monitoring & Logging Stack</strong>
+          <p>Prometheus + Grafana dashboards, CloudWatch metrics, and Splunk for centralized logging & alerting.</p>
+        </div>
       </div>
-      <div class="cert-item">
-        <span>🎖️</span> AWS Certified Cloud Practitioner (CLF-C02)
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    © <span id="year"></span> Kamatham Simon Daniel — Built with ❤️
-  </footer>
-</div>
+    <section class="card">
+      <h3>Skills & Tools</h3>
+      <div class="skills" style="margin-top:10px">
+        <div class="chip">AWS (SAA)</div>
+        <div class="chip">Terraform</div>
+        <div class="chip">Linux</div>
+        <div class="chip">Docker</div>
+        <div class="chip">Jenkins</div>
+        <div class="chip">GitLab CI</div>
+        <div class="chip">Prometheus</div>
+        <div class="chip">Grafana</div>
+        <div class="chip">Splunk</div>
+        <div class="chip">Python</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Certifications</h3>
+
+      <div class="cert-row">
+        <!-- Solutions Architect — clickable to Credly -->
+        <a class="cert-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener noreferrer" title="AWS Solutions Architect — Associate (SAA)">
+          <img src="saa.png" alt="AWS Solutions Architect Associate badge" class="cert-img"/>
+          <div class="cert-label">AWS Solutions Architect — Associate (SAA)</div>
+        </a>
+
+        <!-- Cloud Practitioner -->
+        <a class="cert-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener noreferrer" title="AWS Certified Cloud Practitioner">
+          <img src="ccp.png" alt="AWS Cloud Practitioner badge" class="cert-img"/>
+          <div class="cert-label">AWS Certified Cloud Practitioner</div>
+        </a>
+      </div>
+    </section>
+
+    <footer>© <span id="year"></span> Kamatham Simon Daniel — Built with ❤️</footer>
+  </div>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
