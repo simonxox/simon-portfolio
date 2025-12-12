@@ -1,0 +1,157 @@
+!doctype html
+html lang=en
+head
+meta charset=utf-8 
+meta name=viewport content=width=device-width,initial-scale=1 
+titleSimon Daniel — Cloud & DevOpstitle
+meta name=description content=Simon Daniel — Cloud & DevOps Engineer. Projects Terraform, Moodle on AWS, CICD, monitoring.
+link rel=icon href=data;base64,iVBORw0KGgo=
+style
+  root{--bg#0f1724;--card#0b1220;--muted#9aa4b2;--accent#06b6d4;--glassrgba(255,255,255,0.03)}
+  {box-sizingborder-box}body{margin0;font-familyInter,system-ui,Arial;backgroundlinear-gradient(180deg,#071021 0%,#071229 100%);color#e6eef6;line-height1.45}
+  .container{max-width980px;margin36px auto;padding24px}
+  header{displayflex;align-itemscenter;gap16px}
+  .avatar{width84px;height84px;border-radius12px;backgroundlinear-gradient(135deg,#0ea5a4,#06b6d4);displayflex;align-itemscenter;justify-contentcenter;font-weight700;font-size30px;color#06121a}
+  h1{margin0;font-size28px}
+  p.lead{margin6px 0;colorvar(--muted)}
+  .grid{displaygrid;grid-template-columns1fr 320px;gap20px;margin-top22px}
+  .card{backgroundvar(--card);padding18px;border-radius14px;box-shadow0 6px 18px rgba(3,7,18,0.6)}
+  .skills{displayflex;flex-wrapwrap;gap8px;margin-top10px}
+  .chip{backgroundvar(--glass);padding6px 10px;border-radius999px;font-size13px;colorvar(--muted)}
+  .projects{displaygrid;gap12px}
+  .proj{displayflex;gap12px;align-itemscenter}
+  .proj img{width96px;height60px;object-fitcover;border-radius8px;background#032033}
+  .btn{displayinline-block;padding10px 14px;border-radius10px;backgroundlinear-gradient(90deg,var(--accent),#0891b2);color#04101a;text-decorationnone;font-weight600}
+  .small{font-size13px;colorvar(--muted)}
+  form{displaygrid;gap8px}
+  input,textarea{width100%;padding10px;backgroundtransparent;border1px solid rgba(255,255,255,0.06);border-radius8px;colorinherit}
+  textarea{min-height110px;resizevertical}
+  footer{margin-top30px;text-aligncenter;colorvar(--muted);font-size13px}
+  @media(max-width880px){.grid{grid-template-columns1fr}.avatar{width72px;height72px;font-size26px}}
+style
+head
+body
+  div class=container
+    header
+      div class=avatarSDdiv
+      div
+        h1Kamatham Simon Danielh1
+        p class=leadCloud & DevOps Engineer — AWS Solutions Architect  Terraform  CICD  Moodle on AWS. Based in Hyderabad. 🇮🇳p
+        div style=margin-top8px
+          a class=btn href=resume.pdf target=_blankDownload Resumea
+          a class=btn href=#contact style=margin-left8px;background#1f2937;color#e6eef6Contacta
+        div
+      div
+    header
+
+    div class=grid
+      !-- LEFT main --
+      div
+        div class=card
+          h3Abouth3
+          p class=smallI build production-ready cloud infrastructure and automation. My focus reliable, secure, and cost-effective AWS deployments using Terraform, CICD pipelines, monitoring (Prometheus & Grafana), and web apps like Moodle.p
+          div style=margin-top8px
+            strongWhat I dostrong
+            ul class=small
+              liDesign & deploy infra on AWS (VPC, RDS, ElastiCache, ALB, CloudFront)li
+              liIaC with Terraform & automation (JenkinsGitLab CI)li
+              liMonitoring & logging Prometheus, Grafana, CloudWatch, Splunkli
+            ul
+          div
+        div
+
+        div class=card style=margin-top14px
+          h3Featured Projectsh3
+          div class=projects
+            div class=proj
+              img alt=Moodle src=
+              div
+                strongMoodle on AWS (3-tier)strong
+                div class=smallTerraform, RDS, AutoScaling, CloudFront. Benchmarking + CICD.div
+                div style=margin-top6pxa class=small href=# target=_blankGitHub →adiv
+              div
+            div
+
+            div class=proj
+              img alt=Terraform src=
+              div
+                strongTerraform Multi-env Modulesstrong
+                div class=smallReusable modules (VPC, EC2, RDS) with Terragrunt & automated pipelines.div
+                div style=margin-top6pxa class=small href=# target=_blankGitHub →adiv
+              div
+            div
+
+            div class=proj
+              img alt=CICD src=
+              div
+                strongCICD Maven → Jenkins → Tomcatstrong
+                div class=smallEnd-to-end pipeline, automated deployments to EC2 & S3 artifacts.div
+                div style=margin-top6pxa class=small href=# target=_blankDetails →adiv
+              div
+            div
+
+          div
+        div
+
+        div class=card style=margin-top14px
+          h3Skills & Toolsh3
+          div class=skills
+            span class=chipAWS (SAA)span
+            span class=chipTerraformspan
+            span class=chipLinuxspan
+            span class=chipDockerspan
+            span class=chipJenkins  GitLab CIspan
+            span class=chipPrometheusspan
+            span class=chipGrafanaspan
+            span class=chipSplunkspan
+            span class=chipPython  Flaskspan
+          div
+        div
+      div
+
+      !-- RIGHT sidebar --
+      aside
+        div class=card
+          h4Contacth4
+          div class=smallWant to collaborate or interview Send a quick message.div
+          !-- Use Formspree or replace action with your endpoint --
+          form id=contact action=httpsformspree.iofYOUR_FORM_ID method=POST
+            input type=text name=name placeholder=Your name required
+            input type=email name=_replyto placeholder=Email required
+            input type=text name=subject placeholder=Subject required
+            textarea name=message placeholder=Short message requiredtextarea
+            button class=btn type=submitSendbutton
+          form
+        div
+
+        div class=card style=margin-top12px
+          h4Certificationsh4
+          div class=smallAWS Solutions Architect – Associate ✅brCloud Practitioner ✅div
+          div style=margin-top8pxa class=small href=# target=_blankLinkedIn profile →adiv
+        div
+
+        div class=card style=margin-top12px
+          h4Quick Linksh4
+          div style=displayflex;flex-directioncolumn;gap6px;margin-top8px
+            a class=small href=# target=_blankGitHuba
+            a class=small href=# target=_blankLinkedIna
+            a class=small href=resume.pdf target=_blankResume (PDF)a
+          div
+        div
+      aside
+    div
+
+    footer
+      div© span id=yearspan Kamatham Simon Daniel — Built with ❤️ • Based in Hyderabaddiv
+    footer
+  div
+
+script
+  document.getElementById('year').textContent = new Date().getFullYear();
+   Minimal improvement show sample images if blank
+  document.querySelectorAll('.proj img').forEach((img,i)={
+    if(!img.src) img.src = 'dataimagesvg+xml;utf8,' + encodeURIComponent('svg xmlns=httpwww.w3.org2000svg width=300 height=180rect width=100% height=100% fill=#032033text x=50% y=50% fill=#06b6d4 font-size=18 font-family=Arial text-anchor=middle dominant-baseline=middleProject '+(i+1)+'textsvg');
+  });
+script
+body
+html
