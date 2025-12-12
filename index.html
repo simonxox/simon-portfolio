@@ -6,95 +6,102 @@
 <title>Kamatham Simon Daniel — Cloud & DevOps</title>
 <meta name="description" content="Kamatham Simon Daniel — Cloud & DevOps Engineer. Terraform, CI/CD, Monitoring, AWS SAA."/>
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<meta name="theme-color" content="#000000"/>
+<meta name="theme-color" content="#020405"/>
 
-<!-- Performance: preload desktop hero for faster LCP -->
+<!-- Performance: preload desktop hero for faster LCP on large screens -->
 <link rel="preload" as="image" href="assets/space-hero-1600.webp">
 
 <style>
   :root{
-    --bg-1:#000000;         /* deeper black */
-    --bg-2:#07090c;         /* near-black */
-    --muted:#9fb0c1;
-    --accent1:#5eead4;      /* subtle teal; still readable but not bright-blue */
-    --accent2:#2dd4bf;
-    --card-stroke: rgba(255,255,255,0.04);
-    --maxw:1180px;
-    --content-gap:20px;
+    /* dark, premium palette (darker than before) */
+    --bg-1: #020205;         /* deepest top */
+    --bg-2: #071018;         /* bottom */
+    --muted: #9fb0c1;
+    --accent1: #05c6b9;
+    --accent2: #07a8b0;
+    --card-bg: rgba(3,8,12,0.62); /* darker card */
+    --card-border: rgba(255,255,255,0.03);
+    --glass-shadow: rgba(2,6,10,0.7);
+    --maxw: 1180px;
+    --content-gap:22px;
   }
 
-  /* Reset & perf */
+  /* Basic reset & performance */
   *,*::before,*::after{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;
-    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    background:
+      radial-gradient(900px 500px at 6% 12%, rgba(6,182,212,0.02), transparent 8%),
+      radial-gradient(800px 420px at 92% 88%, rgba(8,146,178,0.01), transparent 8%),
+      linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 100%);
     color:#eaf4fb;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.45;
-    -webkit-font-feature-settings: "liga" 0;
-    -webkit-text-size-adjust:100%;
   }
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block;height:auto;line-height:0}
+  img{max-width:100%;display:block;height:auto}
 
-  .wrap{max-width:var(--maxw);margin:24px auto;padding:18px}
+  .wrap{max-width:var(--maxw);margin:26px auto;padding:20px}
 
-  /* hide heavy decorative blobs (removed blue glow) */
-  .blob, .blob2 { display:none !important; }
+  /* Decorative blobs (subtle) - hidden on small */
+  .blob{position:fixed;right:-120px;top:-80px;width:360px;height:360px;border-radius:50%;background: radial-gradient(circle at 30% 30%, rgba(6,182,212,0.03), transparent 30%), radial-gradient(circle at 70% 70%, rgba(8,146,178,0.02), transparent 30%);filter:blur(36px);pointer-events:none;z-index:0;mix-blend-mode:screen}
+  .blob2{position:fixed;left:-120px;bottom:-100px;width:420px;height:420px;border-radius:50%;background: radial-gradient(circle at 40% 40%, rgba(6,182,212,0.03), transparent 30%), radial-gradient(circle at 70% 70%, rgba(8,146,178,0.02), transparent 30%);filter:blur(46px);pointer-events:none;z-index:0;mix-blend-mode:screen}
 
   /* NAV */
-  nav{position:sticky;top:14px;z-index:60;display:flex;align-items:center;padding:10px 14px;border-radius:12px;
-    background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px);
-    box-shadow:0 8px 30px rgba(0,0,0,0.7)}
-  .brand{font-weight:800;font-size:15px}
+  nav{position:sticky;top:14px;z-index:60;display:flex;align-items:center;padding:12px 16px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));border:1px solid rgba(255,255,255,0.02);backdrop-filter: blur(6px) saturate(110%);box-shadow:0 8px 22px var(--glass-shadow)}
+  .brand{font-weight:800;font-size:15px;padding-left:6px}
   .navlinks{margin-left:auto;display:flex;gap:12px;align-items:center}
-  .navlinks a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600;font-size:14px}
-  .navlinks a:hover{background:rgba(255,255,255,0.04);color:#fff}
+  .navlinks a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600;transition:all .14s ease;border:1px solid transparent;font-size:14px}
+  .navlinks a:hover{background:linear-gradient(180deg, rgba(255,255,255,0.014), rgba(255,255,255,0.01));color:#fff;border:1px solid rgba(255,255,255,0.02)}
 
   /* HERO */
-  .hero{margin-top:18px;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;padding:36px 28px;height:420px;
-    border:1px solid rgba(255,255,255,0.03);box-shadow:0 14px 60px rgba(0,0,0,0.75)}
-  .hero-inner{max-width:880px;z-index:4}
-  h1{font-size:clamp(28px,5vw,46px);margin:0 0 8px 0;line-height:1.02;letter-spacing:-0.4px}
-  .headline-sub{color:var(--muted);font-size:14px;margin-bottom:10px}
+  .hero{margin-top:20px;border-radius:14px;overflow:hidden;position:relative;display:flex;align-items:center;padding:44px 32px;height:420px;border:1px solid var(--card-border);box-shadow:0 10px 40px var(--glass-shadow)}
+  .hero-inner{max-width:880px;z-index:2;text-align:left}
+  h1{font-size:clamp(28px, 5vw, 46px);margin:0 0 8px 0;line-height:1.02;letter-spacing:-0.5px;text-shadow:0 6px 18px rgba(3,7,12,0.7)}
+  .headline-sub{color:var(--muted);font-size:clamp(13px,2.2vw,15px);margin-bottom:12px;text-shadow:0 6px 18px rgba(3,7,12,0.6)}
   .headline-chip{
-    display:inline-block;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,0.03);
-    color:#e8fbff;font-weight:700;border:1px solid rgba(255,255,255,0.04);font-size:13px;line-height:1.2;
+    display:inline-block;
+    padding:12px 16px;
+    border-radius:999px;
+    background: rgba(3,8,12,0.45); /* dark pill but still translucent; DOES NOT darken hero image */
+    color:#e8fbfd;
+    font-weight:700;
+    border:1px solid rgba(255,255,255,0.03);
+    font-size:14px;
+    max-width:92%;
+    white-space:normal;
+    line-height:1.25;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.55);
   }
 
-  /* hero background */
+  /* hero background - NO darkening filter on the image (user requested A) */
   .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-  .hero-bg img{width:100%;height:100%;object-fit:cover;display:block;
-    filter:brightness(34%) contrast(118%);
-    transform:scale(1.02);
-  }
-  /* darker overlay for premium look */
-  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.62), rgba(0,0,0,0.72));z-index:2}
-  /* subtle stars removed on mobile to improve perf */
-  .hero-bg::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background-image:radial-gradient(1.2px 1.2px at 10% 12%, rgba(255,255,255,0.9), transparent 30%);opacity:0.12;mix-blend-mode:screen;filter:blur(0.5px)}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+  /* remove overlay — keep hero image fully bright (no dark overlay) */
+  .hero-bg::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none; /* intentionally empty: no overlay */ }
+  /* subtle star dots only on larger screens — low opacity */
+  .hero-bg::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background-image:radial-gradient(1.6px 1.6px at 8% 16%, rgba(255,255,255,0.05), transparent 30%), radial-gradient(1px 1px at 48% 36%, rgba(255,255,255,0.04), transparent 30%), radial-gradient(0.9px 0.9px at 72% 78%, rgba(255,255,255,0.03), transparent 30%);background-repeat:repeat;opacity:0.16;mix-blend-mode:screen;animation: drift 60s linear infinite}
+  @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-240px)}}
 
-  .hero-ctas{margin-top:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-  .cta-btn{padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;display:inline-block}
-  .cta-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021412}
-  .cta-secondary{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+  .hero-ctas{margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .cta-btn{padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;transition:transform .18s,box-shadow .18s;display:inline-block}
+  .cta-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#04121a;box-shadow:0 8px 22px rgba(6,182,212,0.09);border:1px solid rgba(255,255,255,0.02)}
+  .cta-secondary{background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));border:1px solid rgba(255,255,255,0.02);color:var(--muted)}
 
   /* GRID */
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--content-gap);margin-top:22px}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--content-gap);margin-top:26px}
   @media(max-width:980px){.grid{grid-template-columns:1fr;padding-bottom:18px}}
   @media(max-width:720px){.grid{grid-template-columns:1fr;gap:18px}}
 
-  /* GLASS cards (subtle, darker) */
-  .glass{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-    border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 34px rgba(0,0,0,0.7)}
-  .glass:hover{transform:translateY(-4px);transition:transform .18s}
-
+  /* GLASS cards (darker) */
+  .glass{background: linear-gradient(180deg, rgba(6,10,14,0.68), rgba(6,10,14,0.60));border-radius:12px;padding:18px;border:1px solid var(--card-border);box-shadow:0 10px 28px rgba(0,0,0,0.6);transition:transform .22s ease, box-shadow .22s ease}
+  .glass:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(0,0,0,0.66)}
   h3{margin:0 0 12px 0}
   p,li{color:var(--muted);margin:0}
 
   /* PROJECTS */
   .projects{display:grid;gap:12px}
-  .project{padding:16px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
-  .project h4{margin:0 0 6px 0}
-  .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+  .project{display:block;padding:16px;border-radius:12px;background: linear-gradient(180deg, rgba(6,8,10,0.46), rgba(6,8,10,0.42));border:1px solid rgba(255,255,255,0.02)}
+  .project h4{margin:0 0 6px 0;color:#fff}
+  .project .meta{color:var(--muted);font-size:13px;margin:8px 0}
   .project ul{margin:8px 0 0 18px;color:var(--muted);line-height:1.5}
-
   .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
   .tool{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);font-weight:700;color:var(--muted);font-size:13px}
 
@@ -102,227 +109,218 @@
   .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
   .skill-badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:700}
 
-  /* CERTS - centre with subtle accent */
+  /* CERTS - center items & better blue verify */
   .certs-grid{display:flex;flex-direction:column;gap:12px}
   .cert-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;justify-content:center}
-  .cert-item{width:220px;text-align:center;padding:14px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .cert-item{width:220px;text-align:center;padding:16px;border-radius:12px;background: linear-gradient(180deg, rgba(6,10,14,0.66), rgba(6,10,14,0.58));border:1px solid var(--card-border);display:flex;flex-direction:column;align-items:center;justify-content:center}
   .cert-img{max-width:140px;border-radius:8px;display:block;margin:6px auto 12px}
-  .cert-text{font-weight:800;color:var(--muted);margin-bottom:6px}
-  .verify-link{display:inline-block;margin-top:6px;font-size:13px;color:var(--accent1);font-weight:700;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
-  .verify-link:hover{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021412}
+  .cert-text{font-weight:800;color:var(--muted);margin-bottom:8px}
+  .verify-link{display:inline-block;margin-top:6px;font-size:13px;color:#0bb7c1;font-weight:800;text-decoration:none;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg, rgba(11,183,193,0.06), rgba(7,168,176,0.03));border:1px solid rgba(11,183,193,0.12);transition:transform .14s,color .14s}
+  .verify-link:hover{color:#fff;background:linear-gradient(90deg,var(--accent1),var(--accent2));transform:translateY(-2px)}
 
-  /* CONTACT */
+  /* CONTACT + COPY BUTTON alignment */
   .contact-small{margin-top:12px;color:var(--muted);font-size:13px}
   .contact-small a{color:var(--accent1);font-weight:700}
-  .copy-wrap{display:flex;align-items:center;gap:10px;margin-top:6px}
-  .email-col{display:flex;flex-direction:column}
+  .contact-small a:hover{color:var(--accent2)}
+
+  .copy-wrap{display:flex;align-items:center;gap:12px;margin-top:6px}
+  .copy-wrap .email-col{display:flex;flex-direction:column}
   .email-text{color:var(--muted);font-weight:800}
-  .copy-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;height:36px}
+  .copy-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;height:40px}
   .copy-btn svg{display:block}
-  .copy-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.04)}
-  .copy-btn.copied{background:var(--accent1);color:#021412;border-color:transparent}
+  .copy-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.03)}
+  .copy-btn.copied{background:var(--accent1);color:#04121a;border-color:transparent}
 
-  footer{text-align:center;margin-top:28px;color:var(--muted);padding:18px 0;font-size:13px}
+  footer{text-align:center;margin-top:28px;color:var(--muted);font-size:13px;padding:18px 0}
 
-  /* mobile perf + readability */
+  /* Mobile optimizations */
   @media (max-width:720px){
-    .hero{padding:22px;height:auto}
-    .hero-bg::before{display:none}
-    .hero-bg::after{background:linear-gradient(180deg, rgba(0,0,0,0.72), rgba(0,0,0,0.78))}
-    .navlinks{gap:8px;font-size:13px}
-    .wrap{padding:12px}
+    .blob,.blob2{display:none}                 /* save GPU/paint on mobile */
+    .hero{padding:28px;height:auto}
+    .hero-bg::before{display:none}             /* remove animated stars */
+    .hero-bg::after{display:none}
     .cert-item{width:48%}
-    .project{padding:14px}
+    .navlinks{gap:8px;font-size:13px}
+    .wrap{padding:14px}
   }
 </style>
 </head>
 <body>
 
-<div class="wrap">
+  <div class="blob" aria-hidden="true"></div>
+  <div class="blob2" aria-hidden="true"></div>
 
-  <!-- NAV -->
-  <nav aria-label="Main navigation">
-    <div class="brand">Kamatham Simon Daniel</div>
-    <div class="navlinks">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#certs">Certifications</a>
-      <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-    </div>
-  </nav>
+  <div class="wrap">
+    <nav class="reveal" aria-label="Main navigation">
+      <div class="brand">Kamatham Simon Daniel</div>
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="resume.pdf" target="_blank" rel="noopener" style="padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600">Resume</a>
+      </div>
+    </nav>
 
-  <!-- HERO -->
-  <section id="home" class="hero" aria-label="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <picture>
-        <source srcset="assets/space-hero-1600.webp" type="image/webp" media="(min-width:980px)">
-        <source srcset="assets/space-hero-900.webp" type="image/webp" media="(min-width:520px)">
-        <!-- hero image: high priority for LCP -->
-        <img class="bg-img" src="assets/space-hero-600.jpg" alt="Nebula space background" loading="eager" fetchpriority="high" />
-      </picture>
-    </div>
-
-    <div class="hero-inner">
-      <h1>Simon</h1>
-      <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready Cloud infrastructure and automation.</div>
-
-      <div>
-        <span class="headline-chip">
-          AWS Solutions Architect Associate · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk) · Kubernetes · Docker
-        </span>
+    <!-- HERO -->
+    <section id="home" class="hero reveal" aria-label="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <picture>
+          <source srcset="assets/space-hero-1600.webp" type="image/webp" media="(min-width:980px)">
+          <source srcset="assets/space-hero-900.webp" type="image/webp" media="(min-width:520px)">
+          <!-- hero image: loading eager to keep LCP predictable -->
+          <img class="bg-img" src="assets/space-hero-600.jpg" alt="Nebula space background" loading="eager" fetchpriority="high" />
+        </picture>
       </div>
 
-      <div class="hero-ctas">
-        <a href="resume.pdf" target="_blank" class="cta-btn cta-primary" rel="noopener">Download Resume</a>
-        <a href="#projects" class="cta-btn cta-secondary">See Projects</a>
+      <div class="hero-inner">
+        <h1>Simon</h1>
+        <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready Cloud infrastructure and automation.</div>
+        <div style="margin-top:10px">
+          <span class="headline-chip">
+            AWS Solutions Architect Associate · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk) · Kubernetes · Docker
+          </span>
+        </div>
+        <div class="hero-ctas">
+          <a href="resume.pdf" target="_blank" class="cta-btn cta-primary" rel="noopener">Download Resume</a>
+          <a href="#projects" class="cta-btn cta-secondary">See Projects</a>
+        </div>
       </div>
+    </section>
+
+    <div class="grid">
+      <main>
+        <section id="about" class="glass reveal delay-1">
+          <h3>About</h3>
+          <p style="margin-top:10px;color:var(--muted)">
+            Cloud & DevOps Engineer with multi-cloud experience (AWS, GCP, Azure) and strong focus on containerized workloads (Docker) and Kubernetes.
+            I automate infrastructure with Terraform, build robust CI/CD pipelines using Jenkins / GitLab, and deliver enterprise-grade observability using Prometheus, Grafana, and Splunk.
+            I design secure, cost-optimized, production-ready systems that scale.
+          </p>
+        </section>
+
+        <section id="projects" class="glass reveal delay-2" style="margin-top:18px">
+          <h3>Featured Projects</h3>
+
+          <div class="projects" style="margin-top:12px">
+            <article class="project reveal">
+              <h4>Gold Website Hosted on AWS (3-Tier Architecture)</h4>
+              <div class="meta"><strong>Tools:</strong> AWS (EC2, ALB, RDS, S3), Terraform, Jenkins CI/CD</div>
+              <ul>
+                <li>Designed and deployed a 3-tier gold selling website using EC2 (frontend + backend), RDS MySQL, and an Application Load Balancer.</li>
+                <li>Automated the entire infrastructure using Terraform with production-ready modules.</li>
+                <li>Implemented CI/CD pipelines using Jenkins for automated and zero-downtime deployments.</li>
+                <li>Configured CloudWatch monitoring, IAM security policies and S3-based backup automation.</li>
+                <li>Delivered a scalable and secure web platform for publishing, managing, and selling gold products online.</li>
+              </ul>
+              <div class="tools" aria-hidden="true"><span class="tool">AWS</span><span class="tool">Terraform</span><span class="tool">Jenkins</span><span class="tool">ALB</span><span class="tool">RDS</span></div>
+            </article>
+
+            <article class="project reveal">
+              <h4>Automated Gold Price Notification System (AWS SNS Subscription)</h4>
+              <div class="meta"><strong>Tools:</strong> AWS SNS, Lambda/Python, Docker, Terraform</div>
+              <ul>
+                <li>Built an automated workflow that fetches live gold prices from an external API and sends alerts to SNS email/SMS subscribers daily.</li>
+                <li>Developed Python automation using Requests and Boto3 for secure data retrieval and publishing.</li>
+                <li>Managed SNS topics, IAM roles, and Lambda automation using Terraform.</li>
+                <li>Achieved faster deployments and improved environment consistency with IaC.</li>
+                <li>Scheduled daily execution at 8 AM, ensuring automated and reliable notifications.</li>
+              </ul>
+              <div class="tools" aria-hidden="true"><span class="tool">SNS</span><span class="tool">Lambda</span><span class="tool">Python</span><span class="tool">Terraform</span><span class="tool">Docker</span></div>
+            </article>
+
+            <article class="project reveal">
+              <h4>Kubernetes-based Gold Price Processing System (CronJob + Docker + EKS)</h4>
+              <div class="meta"><strong>Tools:</strong> Kubernetes (EKS), Docker, Python</div>
+              <ul>
+                <li>Containerized the gold price processing Python application using Docker and deployed it on AWS EKS.</li>
+                <li>Configured a Kubernetes CronJob to run daily, fetch live price data, and trigger processing workflows.</li>
+                <li>Secured secrets, API keys, and IAM access using IRSA and Kubernetes Secrets.</li>
+                <li>Used CronJobs, automatic retries, and pod restarts to ensure reliable execution without failure.</li>
+              </ul>
+              <div class="tools" aria-hidden="true"><span class="tool">EKS</span><span class="tool">Kubernetes</span><span class="tool">Docker</span><span class="tool">Python</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="skills" class="glass reveal delay-3" style="margin-top:18px">
+          <h3>Skills & Tools</h3>
+          <div class="skills">
+            <div class="skill-badge">AWS, GCP, Azure</div>
+            <div class="skill-badge">Terraform</div>
+            <div class="skill-badge">Linux</div>
+            <div class="skill-badge">Docker</div>
+            <div class="skill-badge">Jenkins</div>
+            <div class="skill-badge">GitLab CI</div>
+            <div class="skill-badge">Prometheus</div>
+            <div class="skill-badge">Grafana</div>
+            <div class="skill-badge">Splunk</div>
+            <div class="skill-badge">Python</div>
+          </div>
+        </section>
+      </main>
+
+      <aside>
+        <section id="certs" class="glass reveal delay-2">
+          <h3>Certifications</h3>
+
+          <div class="certs-grid">
+            <div class="cert-row">
+              <div class="cert-item">
+                <a class="cert-card" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
+                  <img src="assets/saa.png" class="cert-img" alt="AWS Solutions Architect Associate" loading="lazy" />
+                </a>
+                <div class="cert-text">AWS Solutions Architect Associate</div>
+                <a class="verify-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
+              </div>
+
+              <div class="cert-item">
+                <a class="cert-card" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
+                  <img src="assets/ccp.png" class="cert-img" alt="AWS Certified Cloud Practitioner" loading="lazy" />
+                </a>
+                <div class="cert-text">AWS Certified Cloud Practitioner</div>
+                <a class="verify-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="glass reveal delay-3" style="margin-top:18px">
+          <h3>Contact</h3>
+
+          <div class="contact-small">
+            <div style="color:var(--muted);font-size:13px">Email:</div>
+            <div class="copy-wrap" aria-live="polite">
+              <div class="email-col">
+                <div class="email-text" id="emailText">simonchinnu13@gmail.com</div>
+              </div>
+
+              <button id="copyEmailBtn" class="copy-btn" type="button" aria-label="Copy email address">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <path d="M16 3H8a2 2 0 0 0-2 2v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="8" y="7" width="11" height="13" rx="2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="copyBtnText">Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="contact-small" style="margin-top:12px">
+            <div style="color:var(--muted);font-size:13px">LinkedIn:</div>
+            <div><a href="https://www.linkedin.com/in/simon-daniel-72801237a/" target="_blank" rel="noopener">View Profile</a></div>
+          </div>
+
+          <div class="contact-small" style="margin-top:12px">
+            <div style="color:var(--muted);font-size:13px">Location:</div>
+            <div>Hyderabad, India</div>
+          </div>
+        </section>
+      </aside>
     </div>
-  </section>
 
-  <div class="grid">
-    <main>
-
-      <!-- ABOUT -->
-      <section id="about" class="glass" style="margin-top:12px">
-        <h3>About</h3>
-        <p style="margin-top:10px;color:var(--muted)">
-          Cloud & DevOps Engineer with multi-cloud experience (AWS, GCP, Azure), strong focus on containerized workloads (Docker) and Kubernetes. I automate infrastructure with Terraform, build robust CI/CD pipelines using Jenkins/GitLab, and deliver enterprise-grade observability with Prometheus, Grafana and Splunk. I design secure, cost-optimized, production-ready systems.
-        </p>
-      </section>
-
-      <!-- PROJECTS -->
-      <section id="projects" class="glass" style="margin-top:18px">
-        <h3>Featured Projects</h3>
-
-        <div class="projects" style="margin-top:12px">
-
-          <article class="project">
-            <h4>Gold Website Hosted on AWS (3-Tier Architecture)</h4>
-            <div class="meta"><strong>Tools:</strong> AWS (EC2, ALB, RDS, S3), Terraform, Jenkins CI/CD</div>
-            <ul>
-              <li>Designed and deployed a 3-tier gold selling website using EC2 (frontend + backend), RDS MySQL, and an Application Load Balancer.</li>
-              <li>Automated the entire infrastructure using Terraform with production-ready modules.</li>
-              <li>Implemented CI/CD pipelines using Jenkins for automated and zero-downtime deployments.</li>
-              <li>Configured CloudWatch monitoring, IAM security policies and S3-based backup automation.</li>
-              <li>Delivered a scalable and secure web platform for publishing, managing, and selling gold products online.</li>
-            </ul>
-            <div class="tools" aria-hidden="true"><span class="tool">AWS</span><span class="tool">Terraform</span><span class="tool">Jenkins</span><span class="tool">ALB</span><span class="tool">RDS</span></div>
-          </article>
-
-          <article class="project">
-            <h4>Automated Gold Price Notification System (AWS SNS Subscription)</h4>
-            <div class="meta"><strong>Tools:</strong> AWS SNS, Lambda/Python, Docker, Terraform</div>
-            <ul>
-              <li>Built an automated workflow that fetches live gold prices from an external API and sends alerts to SNS email/SMS subscribers daily.</li>
-              <li>Developed Python automation using Requests and Boto3 for secure data retrieval and publishing.</li>
-              <li>Managed SNS topics, IAM roles, and Lambda automation using Terraform.</li>
-              <li>Achieved faster deployments and improved environment consistency with IaC.</li>
-              <li>Scheduled daily execution at 8 AM, ensuring automated and reliable notifications.</li>
-            </ul>
-            <div class="tools" aria-hidden="true"><span class="tool">SNS</span><span class="tool">Lambda</span><span class="tool">Python</span><span class="tool">Terraform</span><span class="tool">Docker</span></div>
-          </article>
-
-          <article class="project">
-            <h4>Kubernetes-based Gold Price Processing System (CronJob + Docker + EKS)</h4>
-            <div class="meta"><strong>Tools:</strong> Kubernetes (EKS), Docker, Python</div>
-            <ul>
-              <li>Containerized the gold price processing Python application using Docker and deployed it on AWS EKS.</li>
-              <li>Configured a Kubernetes CronJob to run daily, fetch live price data, and trigger processing workflows.</li>
-              <li>Secured secrets, API keys, and IAM access using IRSA and Kubernetes Secrets.</li>
-              <li>Used CronJobs, automatic retries, and pod restarts to ensure reliable execution without failure.</li>
-            </ul>
-            <div class="tools" aria-hidden="true"><span class="tool">EKS</span><span class="tool">Kubernetes</span><span class="tool">Docker</span><span class="tool">Python</span></div>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- SKILLS -->
-      <section id="skills" class="glass" style="margin-top:18px">
-        <h3>Skills & Tools</h3>
-        <div class="skills" style="margin-top:10px">
-          <div class="skill-badge">AWS, GCP, Azure</div>
-          <div class="skill-badge">Terraform</div>
-          <div class="skill-badge">Linux</div>
-          <div class="skill-badge">Docker</div>
-          <div class="skill-badge">Kubernetes</div>
-          <div class="skill-badge">Jenkins</div>
-          <div class="skill-badge">Prometheus</div>
-          <div class="skill-badge">Grafana</div>
-          <div class="skill-badge">Splunk</div>
-          <div class="skill-badge">Python</div>
-        </div>
-      </section>
-
-    </main>
-
-    <aside>
-
-      <!-- CERTIFICATIONS -->
-      <section id="certs" class="glass">
-        <h3>Certifications</h3>
-
-        <div class="certs-grid">
-          <div class="cert-row">
-            <div class="cert-item">
-              <a class="cert-card" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
-                <img src="assets/saa.png" class="cert-img" alt="AWS Solutions Architect Associate" loading="lazy" />
-              </a>
-              <div class="cert-text">AWS Solutions Architect Associate</div>
-              <a class="verify-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
-            </div>
-
-            <div class="cert-item">
-              <a class="cert-card" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
-                <img src="assets/ccp.png" class="cert-img" alt="AWS Certified Cloud Practitioner" loading="lazy" />
-              </a>
-              <div class="cert-text">AWS Certified Cloud Practitioner</div>
-              <a class="verify-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="glass" style="margin-top:18px">
-        <h3>Contact</h3>
-
-        <div class="contact-small">
-          <div style="color:var(--muted);font-size:13px">Email:</div>
-          <div class="copy-wrap" aria-live="polite">
-            <div class="email-col">
-              <div class="email-text" id="emailText">simonchinnu13@gmail.com</div>
-            </div>
-
-            <button id="copyEmailBtn" class="copy-btn" type="button" aria-label="Copy email address">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                <path d="M16 3H8a2 2 0 0 0-2 2v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect x="8" y="7" width="11" height="13" rx="2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span id="copyBtnText">Copy</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="contact-small" style="margin-top:12px">
-          <div style="color:var(--muted);font-size:13px">LinkedIn:</div>
-          <div><a href="https://www.linkedin.com/in/simon-daniel-72801237a/" target="_blank" rel="noopener">View Profile</a></div>
-        </div>
-
-        <div class="contact-small" style="margin-top:12px">
-          <div style="color:var(--muted);font-size:13px">Location:</div>
-          <div>Hyderabad, India</div>
-        </div>
-
-      </section>
-
-    </aside>
+    <footer>© <span id="year"></span> Simon — Built with ❤️</footer>
   </div>
-
-  <footer>© <span id="year"></span> Simon — Built with ❤️</footer>
-</div>
 
 <script>
   // set year
@@ -331,28 +329,26 @@
   // Copy email functionality (fast, accessible)
   (function(){
     const emailEl = document.getElementById('emailText');
-    const email = emailEl ? emailEl.textContent.trim() : '';
+    const email = emailEl.textContent.trim();
     const btn = document.getElementById('copyEmailBtn');
     const btnText = document.getElementById('copyBtnText');
 
-    if (btn) {
-      btn.addEventListener('click', async () => {
-        try {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(email);
-          } else {
-            const ta = document.createElement('textarea'); ta.value = email; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
-          }
-          btn.classList.add('copied');
-          const prev = btnText.textContent;
-          btnText.textContent = 'Copied!';
-          setTimeout(()=>{ btn.classList.remove('copied'); btnText.textContent = prev; }, 1400);
-        } catch (e) {
-          btnText.textContent = 'Try again';
-          setTimeout(()=> btnText.textContent = 'Copy', 1400);
+    btn.addEventListener('click', async () => {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const ta = document.createElement('textarea'); ta.value = email; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
         }
-      });
-    }
+        btn.classList.add('copied');
+        const prev = btnText.textContent;
+        btnText.textContent = 'Copied!';
+        setTimeout(()=>{ btn.classList.remove('copied'); btnText.textContent = prev; }, 1400);
+      } catch (e) {
+        btnText.textContent = 'Try again';
+        setTimeout(()=> btnText.textContent = 'Copy', 1400);
+      }
+    });
   })();
 </script>
 
