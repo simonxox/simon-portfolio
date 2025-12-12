@@ -16,47 +16,70 @@
     --accent1:#06b6d4;
     --accent2:#0891b2;
     --card-stroke: rgba(255,255,255,0.06);
-    --maxw:1180px;
   }
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;
-    background: linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 70%);
-    color:#eaf4fb;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.45;
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial,Helvetica,sans-serif;
+    background:
+      radial-gradient(800px 420px at 8% 10%, rgba(6,182,212,0.04), transparent 10%),
+      radial-gradient(700px 400px at 92% 90%, rgba(8,146,178,0.02), transparent 10%),
+      linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 70%);
+    color:#eaf4fb;-webkit-font-smoothing:antialiased;
   }
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--maxw);margin:26px auto;padding:20px}
+  .wrap{max-width:1180px;margin:26px auto;padding:20px}
 
-  .skip{position:absolute;left:-999px;top:auto}
-  .skip:focus{left:16px;top:16px;width:auto;padding:8px 12px;background:#fff;color:#04121a;border-radius:6px;z-index:9999}
+  .blob {
+    position:fixed;right:-120px;top:-80px;width:360px;height:360px;border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, rgba(8,140,170,0.18), transparent 30%),
+                radial-gradient(circle at 70% 70%, rgba(3,80,110,0.12), transparent 30%);
+    filter:blur(36px);pointer-events:none;z-index:0;mix-blend-mode:screen;
+  }
+  .blob2 {
+    position:fixed;left:-120px;bottom:-100px;width:420px;height:420px;border-radius:50%;
+    background: radial-gradient(circle at 40% 40%, rgba(6,182,212,0.06), transparent 30%),
+                radial-gradient(circle at 70% 70%, rgba(8,146,178,0.04), transparent 30%);
+    filter:blur(46px);pointer-events:none;z-index:0;mix-blend-mode:screen;
+  }
 
-  .blob{position:fixed;right:-120px;top:-80px;width:360px;height:360px;border-radius:50%;background: radial-gradient(circle at 30% 30%, rgba(8,140,170,0.18), transparent 30%), radial-gradient(circle at 70% 70%, rgba(3,80,110,0.12), transparent 30%);filter:blur(36px);pointer-events:none;z-index:0;mix-blend-mode:screen}
-  .blob2{position:fixed;left:-120px;bottom:-100px;width:420px;height:420px;border-radius:50%;background: radial-gradient(circle at 40% 40%, rgba(6,182,212,0.06), transparent 30%), radial-gradient(circle at 70% 70%, rgba(8,146,178,0.04), transparent 30%);filter:blur(46px);pointer-events:none;z-index:0;mix-blend-mode:screen}
-
-  nav{position:sticky;top:14px;z-index:60;display:flex;align-items:center;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.035);backdrop-filter:blur(12px);box-shadow:0 12px 30px rgba(2,6,12,0.55)}
+  /* NAV */
+  nav{
+    position:sticky;top:14px;z-index:60;display:flex;align-items:center;padding:12px 16px;border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+    border:1px solid rgba(255,255,255,0.035);backdrop-filter: blur(12px) saturate(140%);
+    box-shadow:0 12px 30px rgba(2,6,12,0.55)
+  }
   .brand{font-weight:800;font-size:15px;padding-left:6px}
-  .navlinks{margin-left:auto;display:flex;gap:12px;align-items:center}
-  .navlinks a{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;transition:.18s}
-  .navlinks a:hover{background:rgba(255,255,255,0.03);color:#fff}
+  .navlinks{margin-left:auto;display:flex;gap:16px;align-items:center}
+  .navlinks a{
+    padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;transition:all .18s ease;
+    border:1px solid transparent;
+  }
+  .navlinks a:hover{
+    background:linear-gradient(180deg, rgba(255,255,255,0.014), rgba(255,255,255,0.01));
+    color:#fff;border:1px solid rgba(255,255,255,0.025)
+  }
 
+  /* HERO (now with responsive image, overlay & star layer) */
   .hero{
     margin-top:20px;border-radius:18px;overflow:hidden;position:relative;display:flex;align-items:center;
-    padding:56px 48px;height:520px;border:1px solid rgba(255,255,255,0.02);
-    box-shadow:0 18px 60px rgba(2,8,20,0.6);backdrop-filter: blur(6px);color:#eaf4fb;
+    padding:56px 48px;height:420px;border:1px solid rgba(255,255,255,0.02);
+    box-shadow:0 18px 60px rgba(2,8,20,0.6);backdrop-filter: blur(18px) saturate(140%);
   }
-  .hero-inner{max-width:960px;z-index:3;margin:0 auto;text-align:center}
-  h1{font-size:48px;margin:0 0 8px 0;line-height:1.04}
-  .headline-sub{color:var(--muted);font-size:16px;margin-bottom:12px}
-  .headline-chip{display:inline-block;padding:10px 16px;border-radius:999px;background:rgba(6,182,212,0.12);color:#dff8fb;font-weight:700}
+  .hero-inner{max-width:960px;z-index:2;text-align:left}
+  h1{font-size:46px;margin:0 0 8px 0;line-height:1.02;letter-spacing:-0.5px}
+  .headline-sub{color:var(--muted);font-size:15px;margin-bottom:12px}
+  .headline-chip{
+    display:inline-block;padding:12px 18px;border-radius:999px;
+    background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(8,146,178,0.08));
+    color:#dff8fb;font-weight:700;border:1px solid rgba(255,255,255,0.03);
+  }
 
-  .hero-bg{
-    position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden
-  }
-  .hero-bg .bg-img{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05);transform:translateZ(0);
-  }
-  .hero-bg::after{
-    content:"";position:absolute;inset:0;background:rgba(4,18,26,0.55);z-index:2
-  }
+  /* hero background container with picture element */
+  .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+  /* dark overlay for readability */
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,18,26,0.56), rgba(4,18,26,0.56));z-index:2}
+  /* star overlay */
   .hero-bg::before{
     content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
     background-image:
@@ -68,164 +91,322 @@
   }
   @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-240px)}}
 
-  @media(max-width:980px){
-    .hero{height:420px;padding:40px 22px}
-    h1{font-size:32px}
+  .hero-ctas{margin-top:20px;display:flex;gap:14px;align-items:center}
+  .cta-btn{padding:11px 22px;border-radius:999px;font-weight:700;font-size:14px;transition:transform .22s,box-shadow .22s;display:inline-block}
+  .cta-primary{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:#04121a;box-shadow:0 12px 34px rgba(6,182,212,0.12);
+    border:1px solid rgba(255,255,255,0.02)
   }
-  @media(max-width:520px){
-    .hero{height:320px;padding:22px}
-    h1{font-size:22px}
-    .headline-sub{font-size:14px}
+  .cta-secondary{
+    background:linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008));
+    border:1px solid rgba(255,255,255,0.03);color:var(--muted)
   }
 
-  .grid{display:grid;grid-template-columns:1fr 380px;gap:24px;margin-top:26px}
-  @media(max-width:980px){.grid{grid-template-columns:1fr}}
+  /* GRID */
+  .grid{display:grid;grid-template-columns:1fr 400px;gap:26px;margin-top:26px}
+  @media(max-width:980px){.grid{grid-template-columns:1fr;padding-bottom:18px}}
 
-  .glass{background:rgba(255,255,255,0.012);border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 18px 48px rgba(2,8,20,0.55);backdrop-filter: blur(8px)}
+  /* GLASS cards */
+  .glass{
+    background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
+    border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.03);
+    box-shadow:0 18px 48px rgba(2,8,20,0.55);backdrop-filter: blur(14px) saturate(140%);
+    transition:transform .28s ease, box-shadow .28s ease;
+  }
+  .glass:hover{transform:translateY(-10px);box-shadow:0 28px 72px rgba(2,8,20,0.64)}
+  h3{margin:0 0 12px 0}
+  p,li{color:var(--muted);margin:0}
+
+  /* PROJECTS */
   .projects{display:grid;gap:14px}
-  .project{padding:18px;border-radius:14px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
+  .project{
+    display:block;padding:18px;border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    border:1px solid rgba(255,255,255,0.02);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 12px 30px rgba(2,8,24,0.45);
+  }
+  .project h4{margin:0 0 6px 0}
+  .project .meta{color:var(--muted);font-size:13px;margin:8px 0}
+  .project ul{margin:8px 0 0 18px;color:var(--muted);line-height:1.5}
   .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .tool{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-size:13px}
+  .tool{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);font-weight:700;color:var(--muted);font-size:13px}
 
-  .contact-small a{color:var(--accent1);font-weight:700}
-  .contact-small a:hover{text-decoration:underline;color:var(--accent2)}
+  /* SKILLS */
+  .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .skill-badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:700}
 
-  .copy-wrap{display:flex;align-items:center;gap:10px}
+  /* CERTIFICATIONS: improved alignment */
+  .certs-grid{
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .cert-row{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:12px;justify-content:flex-start}
+  .cert-item{
+    width:220px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;padding:12px;border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    border:1px solid rgba(255,255,255,0.02);
+    box-shadow:0 12px 34px rgba(2,8,20,0.45);
+  }
+  .cert-img{max-width:160px;width:100%;height:auto;border-radius:8px;box-shadow:0 16px 38px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.04)}
+  .cert-text{margin-top:12px;color:var(--muted);font-weight:800;font-size:15px}
+  .verify-link{display:inline-block;margin-top:8px;font-size:13px;color:var(--accent1);font-weight:700}
+
+  .contact-small{margin-top:12px;color:var(--muted);font-size:13px}
+
+  /* CONTACT LINKS — BLUE & CLICKABLE */
+  .contact-small a {
+    color: var(--accent1);
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+
+  .contact-small a:hover {
+    color: var(--accent2);
+    text-decoration: underline;
+  }
+
+  /* COPY BUTTON */
+  .copy-wrap{display:flex;align-items:center;gap:8px}
   .email-text{color:var(--muted);font-weight:800}
-  .copy-btn{padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;}
-  .copy-btn:hover{background:rgba(255,255,255,0.03)}
-  .copy-btn.copied{background:var(--accent1);color:#04121a;}
+  .copy-btn{
+    display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;
+    background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04);
+    color:var(--muted);font-weight:700;font-size:13px;cursor:pointer;
+    transition: transform .12s ease, background .12s ease, color .12s ease;
+  }
+  .copy-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.03)}
+  .copy-btn:active{transform:translateY(0)}
+  .copy-btn.copied{background:var(--accent1);color:#04121a;border-color:transparent}
 
-  footer{text-align:center;margin-top:28px;color:var(--muted);padding:18px 0;font-size:13px}
+  footer{text-align:center;margin-top:28px;color:var(--muted);font-size:13px;padding:18px 0}
+
+  @media(max-width:720px){
+    h1{font-size:28px}
+    .cert-img{max-width:140px}
+    .hero{height:auto;padding:28px}
+    .grid{grid-template-columns:1fr}
+    .cert-item{width:46%;}
+  }
 </style>
 </head>
 <body>
 
-<a class="skip" href="#main">Skip to content</a>
-<div class="blob"></div>
-<div class="blob2"></div>
+  <div class="blob" aria-hidden="true"></div>
+  <div class="blob2" aria-hidden="true"></div>
 
-<div class="wrap">
-  <nav>
-    <div class="brand">Kamatham Simon Daniel</div>
-    <div class="navlinks">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#certs">Certifications</a>
-      <a href="resume.pdf" target="_blank">Resume</a>
-    </div>
-  </nav>
+  <div class="wrap">
+    <nav class="reveal">
+      <div class="brand">Kamatham Simon Daniel</div>
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="resume.pdf" target="_blank" style="padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600">Resume</a>
+      </div>
+    </nav>
 
-  <section id="home" class="hero">
-    <div class="hero-bg">
-      <picture>
-        <source srcset="assets/space-hero-1600.webp" type="image/webp" media="(min-width:980px)">
-        <source srcset="assets/space-hero-900.webp" type="image/webp" media="(min-width:520px)">
-        <img class="bg-img" src="assets/space-hero-600.jpg" alt="Space Nebula Background">
-      </picture>
-    </div>
+    <section id="home" class="hero reveal" aria-label="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <picture>
+          <source srcset="assets/space-hero-1600.webp" type="image/webp" media="(min-width:980px)">
+          <source srcset="assets/space-hero-900.webp" type="image/webp" media="(min-width:520px)">
+          <img class="bg-img" src="assets/space-hero-600.jpg" alt="Nebula space background showing colorful stars and nebula" />
+        </picture>
+      </div>
 
-    <div id="main" class="hero-inner">
-      <h1>Kamatham Simon Daniel</h1>
-      <div class="headline-sub">Cloud & DevOps Engineer — Building production-ready AWS infrastructure.</div>
-      <div style="margin-top:12px"><span class="headline-chip">AWS SAA · Terraform · CI/CD · Monitoring</span></div>
-    </div>
-  </section>
-
-  <div class="grid">
-    <main>
-      <section id="about" class="glass">
-        <h3>About</h3>
-        <p>I design and deploy production-grade AWS architectures using Terraform, Jenkins CI/CD, and full observability stacks.</p>
-      </section>
-
-      <section id="projects" class="glass" style="margin-top:18px">
-        <h3>Featured Projects</h3>
-        <div class="projects" style="margin-top:12px">
-          <article class="project">
-            <h4>Gold Website Hosted on AWS (3-Tier)</h4>
-            <ul>
-              <li>Private EC2 frontend/backend, ALB routing, RDS MySQL.</li>
-              <li>Automated CI/CD with Jenkins.</li>
-            </ul>
-          </article>
-
-          <article class="project">
-            <h4>Automated Gold Price Notification System</h4>
-            <ul>
-              <li>Daily price alerts using SNS + Lambda.</li>
-            </ul>
-          </article>
+      <div class="hero-inner">
+        <h1>Kamatham Simon Daniel</h1>
+        <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready AWS infrastructure and automation.</div>
+        <div style="margin-top:10px">
+          <span class="headline-chip">AWS Solutions Architect — Associate (SAA) · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk)</span>
         </div>
-      </section>
-
-      <section id="skills" class="glass" style="margin-top:18px">
-        <h3>Skills</h3>
-        <div class="tools">
-          <span class="tool">AWS</span><span class="tool">Terraform</span>
-          <span class="tool">Docker</span><span class="tool">Jenkins</span>
-          <span class="tool">Grafana</span><span class="tool">Splunk</span>
+        <div class="hero-ctas">
+          <a href="resume.pdf" target="_blank" class="cta-btn cta-primary">Download Resume</a>
+          <a href="#projects" class="cta-btn cta-secondary">See Projects</a>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <aside>
-      <section id="certs" class="glass">
-        <h3>Certifications</h3>
-        <div class="cert-row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-          <div class="cert-item"><img src="assets/saa.png" alt="SAA badge" style="max-width:120px"><div>AWS SAA</div></div>
-          <div class="cert-item"><img src="assets/ccp.png" alt="CCP badge" style="max-width:120px"><div>AWS CCP</div></div>
-        </div>
-      </section>
+    <div class="grid">
+      <main>
+        <section id="about" class="glass reveal delay-1">
+          <h3>About</h3>
+          <p style="margin-top:10px;color:var(--muted)">
+            I design and deploy production-grade AWS architectures, focusing on reliability, security and cost optimization. I use Terraform for IaC, automate deployments using Jenkins/GitLab CI, and implement observability stacks with Prometheus, Grafana and Splunk.
+          </p>
+        </section>
 
-      <section class="glass" style="margin-top:18px">
-        <h3>Contact</h3>
+        <section id="projects" class="glass reveal delay-2" style="margin-top:18px">
+          <h3>Featured Projects</h3>
+          <div class="projects" style="margin-top:12px">
+            <article class="project reveal">
+              <h4>Gold Website Hosted on AWS (3-Tier Architecture)</h4>
+              <div class="meta"><strong>Tools:</strong> AWS (EC2, ALB, RDS, S3), Terraform, Jenkins CI/CD</div>
+              <ul>
+                <li>Designed and deployed a 3-tier gold selling website using EC2 (frontend + backend), RDS MySQL, and an Application Load Balancer.</li>
+                <li>Automated the entire infrastructure using Terraform with production-ready modules.</li>
+                <li>Implemented CI/CD pipelines using Jenkins for automated and zero-downtime deployments.</li>
+                <li>Configured CloudWatch monitoring, IAM security policies and S3-based backup automation.</li>
+                <li>Delivered a scalable and secure web platform for publishing, managing, and selling gold products online.</li>
+              </ul>
+              <div class="tools" aria-hidden="true">
+                <span class="tool">AWS</span><span class="tool">Terraform</span><span class="tool">Jenkins</span><span class="tool">ALB</span><span class="tool">RDS</span>
+              </div>
+            </article>
 
-        <div class="copy-wrap">
-          <div>
-            <div style="color:var(--muted);font-size:13px">Email:</div>
-            <div class="email-text" id="emailText">simonchinnu13@gmail.com</div>
+            <article class="project reveal">
+              <h4>Automated Gold Price Notification System (AWS SNS Subscription)</h4>
+              <div class="meta"><strong>Tools:</strong> AWS SNS, Lambda/Python, Docker, Terraform</div>
+              <ul>
+                <li>Built an automated workflow that fetches live gold prices from an external API and sends alerts to SNS email/SMS subscribers daily.</li>
+                <li>Developed Python automation using Requests and Boto3 for secure data retrieval and publishing.</li>
+                <li>Managed SNS topics, IAM roles, and Lambda automation using Terraform.</li>
+                <li>Achieved faster deployments and improved environment consistency with IaC.</li>
+                <li>Scheduled daily execution at 8 AM, ensuring automated and reliable notifications.</li>
+              </ul>
+              <div class="tools" aria-hidden="true">
+                <span class="tool">SNS</span><span class="tool">Lambda</span><span class="tool">Python</span><span class="tool">Terraform</span><span class="tool">Docker</span>
+              </div>
+            </article>
+
+            <article class="project reveal">
+              <h4>Kubernetes-based Gold Price Processing System (CronJob + Docker + EKS)</h4>
+              <div class="meta"><strong>Tools:</strong> Kubernetes (EKS), Docker, Python</div>
+              <ul>
+                <li>Containerized the gold price processing Python application using Docker and deployed it on AWS EKS.</li>
+                <li>Configured a Kubernetes CronJob to run daily, fetch live price data, and trigger processing workflows.</li>
+                <li>Secured secrets, API keys, and IAM access using IRSA and Kubernetes Secrets.</li>
+                <li>Used CronJobs, automatic retries, and pod restarts to ensure reliable execution without failure.</li>
+              </ul>
+              <div class="tools" aria-hidden="true">
+                <span class="tool">EKS</span><span class="tool">Kubernetes</span><span class="tool">Docker</span><span class="tool">Python</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="skills" class="glass reveal delay-3" style="margin-top:18px">
+          <h3>Skills & Tools</h3>
+          <div class="skills">
+            <div class="skill-badge">AWS,GCP,AZURE</div>
+            <div class="skill-badge">Terraform</div>
+            <div class="skill-badge">Linux</div>
+            <div class="skill-badge">Docker</div>
+            <div class="skill-badge">Jenkins</div>
+            <div class="skill-badge">GitLab CI</div>
+            <div class="skill-badge">Prometheus</div>
+            <div class="skill-badge">Grafana</div>
+            <div class="skill-badge">Splunk</div>
+            <div class="skill-badge">Python</div>
+          </div>
+        </section>
+      </main>
+
+      <aside>
+        <section id="certs" class="glass reveal delay-2">
+          <h3>Certifications</h3>
+
+          <div class="certs-grid">
+            <div class="cert-row">
+              <div class="cert-item">
+                <a class="cert-card" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
+                  <img src="saa.png" class="cert-img" alt="AWS Solutions Architect Associate"/>
+                </a>
+                <div class="cert-text">AWS Solutions Architect — Associate (SAA-C03)</div>
+                <a class="verify-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
+              </div>
+
+              <div class="cert-item">
+                <a class="cert-card" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
+                  <img src="ccp.png" class="cert-img" alt="AWS Certified Cloud Practitioner"/>
+                </a>
+                <div class="cert-text">AWS Certified Cloud Practitioner (CLF-C02)</div>
+                <a class="verify-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="glass reveal delay-3" style="margin-top:18px">
+          <h3>Contact</h3>
+          <div class="contact-small copy-wrap" aria-live="polite">
+            <div>
+              <div style="color:var(--muted);font-size:13px">Email:</div>
+              <div class="email-text" id="emailText">simonchinnu13@gmail.com</div>
+            </div>
+
+            <button id="copyEmailBtn" class="copy-btn" type="button" aria-label="Copy email address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                <path d="M16 3H8a2 2 0 0 0-2 2v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="8" y="7" width="11" height="13" rx="2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span id="copyBtnText">Copy</span>
+            </button>
           </div>
 
-          <button id="copyEmailBtn" class="copy-btn">
-            Copy
-          </button>
-        </div>
+          <div class="contact-small" style="margin-top:12px">
+            <div style="color:var(--muted);font-size:13px">LinkedIn:</div>
+            <div>
+              <a href="https://www.linkedin.com/in/simon-daniel-72801237a/" target="_blank">
+                https://www.linkedin.com/in/simon-daniel-72801237a/
+              </a>
+            </div>
+          </div>
 
-        <div style="margin-top:12px">
-          <div style="color:var(--muted);font-size:13px">LinkedIn:</div>
-          <a href="https://www.linkedin.com/in/simon-daniel-72801237a/" target="_blank">View Profile</a>
-        </div>
+          <div class="contact-small" style="margin-top:12px">
+            <div style="color:var(--muted);font-size:13px">Location:</div>
+            <div>Hyderabad, India</div>
+          </div>
+        </section>
+      </aside>
+    </div>
 
-        <div style="margin-top:12px">
-          <div style="color:var(--muted);font-size:13px">Location:</div>
-          Hyderabad, India
-        </div>
-      </section>
-    </aside>
+    <footer>© <span id="year"></span> Kamatham Simon Daniel — Built with ❤️</footer>
   </div>
-
-  <footer>© <span id="year"></span> Kamatham Simon Daniel — Built with ❤️</footer>
-</div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const email = "simonchinnu13@gmail.com";
-  const btn = document.getElementById("copyEmailBtn");
-  const emailText = document.getElementById("emailText");
+  // Copy email functionality
+  (function(){
+    const email = document.getElementById('emailText').textContent.trim();
+    const btn = document.getElementById('copyEmailBtn');
+    const btnText = document.getElementById('copyBtnText');
 
-  btn.addEventListener("click", async () => {
-    await navigator.clipboard.writeText(email);
-    btn.textContent = "Copied!";
-    btn.classList.add("copied");
-    setTimeout(() => {
-      btn.textContent = "Copy";
-      btn.classList.remove("copied");
-    }, 1500);
-  });
+    btn.addEventListener('click', async () => {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+
+        // visual feedback
+        btn.classList.add('copied');
+        const prev = btnText.textContent;
+        btnText.textContent = 'Copied!';
+        btn.setAttribute('aria-live', 'polite');
+
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btnText.textContent = prev;
+        }, 1800);
+      } catch (e) {
+        console.error('Copy failed', e);
+        btnText.textContent = 'Try again';
+        setTimeout(()=> btnText.textContent = 'Copy', 1600);
+      }
+    });
+  })();
 </script>
 
 </body>
