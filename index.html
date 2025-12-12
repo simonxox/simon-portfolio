@@ -1,289 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kamatham Simon Daniel — Cloud & DevOps Engineer</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kamatham Simon Daniel — Cloud & DevOps</title>
+<meta name="description" content="Kamatham Simon Daniel — Cloud & DevOps Engineer. Terraform, CI/CD, Monitoring, AWS SAA."/>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
 <style>
-  :root {
-    --bg: #0a0f1a;
-    --glass: rgba(255,255,255,0.06);
-    --glass-border: rgba(255,255,255,0.12);
-    --text: #d9e7f0;
-    --muted: #8aa3b5;
-    --accent: #00c8ff;
+  :root{
+    --bg-1:#061025;
+    --bg-2:#071229;
+    --muted:#9fb0c1;
+    --accent1:#06b6d4;
+    --accent2:#0891b2;
+    --card-stroke: rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:
+    radial-gradient(900px 500px at 8% 12%, rgba(6,182,212,0.03), transparent),
+    linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 60%);color:#eaf4fb;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:28px auto;padding:20px}
+
+  /* NAV (sticky glass) */
+  nav{
+    position:sticky;top:12px;z-index:50;display:flex;align-items:center;padding:10px 14px;border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid var(--card-stroke);backdrop-filter: blur(8px) saturate(120%);
+    box-shadow:0 8px 26px rgba(2,6,12,0.55)
+  }
+  .brand{font-weight:800}
+  .navlinks{margin-left:auto;display:flex;gap:14px;align-items:center}
+  .navlinks a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600}
+  .navlinks a:hover{background:rgba(255,255,255,0.02);color:#fff}
+
+  /* HERO (clean single column hero card style) */
+  .hero{
+    margin-top:18px;border-radius:16px;overflow:hidden;position:relative;display:flex;align-items:center;
+    background-size:cover;background-position:center;padding:48px 44px;height:420px;
+    background-image: linear-gradient(120deg, rgba(5,10,18,0.45), rgba(6,14,22,0.6)), url('');
+    border:1px solid rgba(255,255,255,0.01);
+    box-shadow:0 14px 48px rgba(2,6,12,0.6);
+  }
+  .hero-inner{max-width:900px}
+  h1{font-size:42px;margin:0 0 8px 0;line-height:1.02}
+  .headline-sub{color:var(--muted);font-size:15px;margin-bottom:12px}
+  .headline-chip{
+    display:inline-block;padding:10px 16px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:#04121a;font-weight:700;border:1px solid rgba(255,255,255,0.04);font-size:14px
   }
 
-  body {
-    margin:0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    overflow-x:hidden;
+  /* CTA buttons */
+  .hero-ctas{margin-top:18px;display:flex;gap:14px;align-items:center}
+  .cta-btn{padding:10px 20px;border-radius:999px;font-weight:700;font-size:14px;transition:transform .22s,box-shadow .22s;display:inline-block}
+  .cta-primary{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:#04121a;box-shadow:0 10px 30px rgba(6,182,212,0.16)
   }
+  .cta-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(6,182,212,0.28)}
+  .cta-secondary{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.06);color:var(--muted)
+  }
+  .cta-secondary:hover{transform:translateY(-3px);background:rgba(255,255,255,0.04)}
 
-  /* NAVBAR */
-  nav {
-    position:sticky;
-    top:0;
-    backdrop-filter:blur(14px);
-    background:rgba(10,15,26,0.55);
-    border-bottom:1px solid var(--glass-border);
-    padding:16px 40px;
-    z-index:10;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  nav a {
-    margin-left:22px;
-    text-decoration:none;
-    color:var(--muted);
-    font-weight:600;
-  }
-  nav a:hover { color:var(--accent); }
-  .resume-btn {
-    padding:8px 16px;
-    background: linear-gradient(90deg,#06b6d4,#0891b2);
-    border-radius:999px;
-    color:#04121a !important;
-    font-weight:700;
-  }
+  /* GRID: main + sidebar */
+  .grid{display:grid;grid-template-columns:1fr 380px;gap:22px;margin-top:22px}
+  @media(max-width:980px){.grid{grid-template-columns:1fr}}
 
-  /* GLASS CARD */
-  .glass {
-    background:var(--glass);
-    border:1px solid var(--glass-border);
-    border-radius:16px;
-    padding:24px;
-    margin:40px auto;
-    width:90%;
-    backdrop-filter:blur(14px);
-    box-shadow:0 0 30px rgba(0,0,0,0.4);
+  /* universal glass card */
+  .glass{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;padding:18px;border:1px solid var(--card-stroke);
+    box-shadow:0 12px 32px rgba(2,6,12,0.6);backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    transition:transform .25s ease, box-shadow .25s ease;
   }
+  .glass:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(2,6,12,0.7)}
+  h3{margin:0 0 10px 0}
+  p,li{color:var(--muted);margin:0}
 
-  h1,h2,h3 { margin:0 0 14px 0; }
+  /* projects */
+  .projects{display:grid;gap:12px}
+  .project{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)}
+  .project .icon{width:66px;height:66px;border-radius:12px;background:#032033;color:var(--accent1);display:flex;align-items:center;justify-content:center;font-weight:800}
 
-  /* HERO SECTION */
-  .hero { padding:50px 0; width:90%; margin:auto; }
-  .highlight {
-    background:rgba(0,200,255,0.12);
-    padding:14px 22px;
-    border-radius:40px;
-    display:inline-block;
-    color:#8ceeef;
-    font-weight:700;
-    font-size:15px;
-  }
+  /* skills */
+  .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .skill-badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:700}
 
-  .cta-btn {
-    padding:10px 20px;
-    border-radius:999px;
-    font-weight:700;
-    font-size:14px;
-    transition:0.25s ease;
-    display:inline-block;
-  }
-  .cta-primary {
-    background:linear-gradient(90deg,#06b6d4,#0891b2);
-    color:#04121a;
-    box-shadow:0 0 14px rgba(6,182,212,0.35);
-  }
-  .cta-primary:hover {
-    transform:translateY(-3px);
-    box-shadow:0 0 20px rgba(6,182,212,0.55);
-  }
-  .cta-secondary {
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.12);
-    color:#d8eaf5;
-  }
+  /* certifications (no dark rect behind badges) */
+  .cert-row{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:12px}
+  .cert-card{display:block;border-radius:12px;padding:6px;transition:transform .22s;background:transparent}
+  .cert-card:hover{transform:translateY(-6px)}
+  .cert-img{max-width:220px;width:100%;height:auto;border-radius:10px;box-shadow:0 16px 38px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.04)}
+  .cert-text{margin-top:8px;color:var(--muted);font-weight:700;text-align:center;font-size:14px}
+  .verify-link{display:block;margin-top:6px;text-align:center;font-size:13px;color:var(--accent1);font-weight:700}
 
-  .hero-ctas {
-    margin-top:18px;
-    display:flex;
-    gap:14px;
-  }
+  /* contact small */
+  .contact-small{margin-top:12px;color:var(--muted);font-size:13px}
 
-  /* PROJECTS */
-  .proj-icon {
-    width:46px;height:46px;
-    border-radius:10px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:700;
-    color:white;
-  }
-  .proj-item { margin-bottom:20px; }
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(10px);animation:revealUp .6s ease forwards}
+  .reveal.delay-1{animation-delay:.12s}.delay-2{animation-delay:.24s}.delay-3{animation-delay:.36s}
+  @keyframes revealUp{to{opacity:1;transform:none}}
 
-  /* SKILLS */
-  .skill-chip {
-    padding:8px 16px;
-    background:rgba(255,255,255,0.05);
-    border-radius:999px;
-    font-size:14px;
-    margin:6px;
-    display:inline-block;
-    border:1px solid rgba(255,255,255,0.06);
-  }
+  footer{text-align:center;margin-top:28px;color:var(--muted);font-size:13px;padding:18px 0}
 
-  /* CERTIFICATIONS */
-  .cert-row {
-    display:flex;
-    gap:40px;
-    flex-wrap:wrap;
-    margin-top:20px;
+  @media(max-width:720px){
+    h1{font-size:28px}
+    .cert-img{max-width:160px}
+    .hero{height:auto;padding:28px}
   }
-  .cert-card {
-    display:flex;
-    justify-content:center;
-    background:rgba(255,255,255,0.04);
-    padding:20px;
-    border-radius:18px;
-    border:1px solid rgba(255,255,255,0.1);
-    transition:0.3s ease;
-  }
-  .cert-card:hover {
-    transform:scale(1.03);
-    box-shadow:0 0 20px rgba(0,200,255,0.28);
-  }
-  .cert-img { width:160px; }
-  .verify-link {
-    color:#00c8ff;
-    font-size:14px;
-    text-decoration:none;
-  }
-
-  footer {
-    text-align:center;
-    padding:40px;
-    color:var(--muted);
-  }
-
 </style>
 </head>
-
 <body>
+  <div class="wrap">
 
-<!-- NAV -->
-<nav>
-  <div style="font-weight:800; font-size:18px;">Kamatham Simon Daniel</div>
-  <div>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#certs">Certifications</a>
-    <a class="resume-btn" href="resume.pdf" target="_blank">Resume</a>
-  </div>
-</nav>
+    <!-- NAV -->
+    <nav class="reveal">
+      <div class="brand">Kamatham Simon Daniel</div>
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="resume.pdf" target="_blank" class="cta-btn cta-primary" style="padding:8px 12px;font-size:13px">Resume</a>
+      </div>
+    </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Kamatham Simon Daniel</h1>
-  <h3 style="margin-top:-6px; font-weight:400; color:var(--muted);">
-    Cloud & DevOps Engineer — I build production-ready AWS infrastructure and automation.
-  </h3>
+    <!-- HERO -->
+    <section id="home" class="hero reveal" aria-label="hero">
+      <div class="hero-inner">
+        <h1>Kamatham Simon Daniel</h1>
+        <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready AWS infrastructure and automation.</div>
 
-  <div class="highlight">
-    AWS Solutions Architect (SAA) • AWS Cloud Practitioner (CLF) • Terraform • CI/CD (Jenkins) • Observability (Prometheus, Grafana, Splunk)
-  </div>
+        <!-- accurate highlight chip -->
+        <div style="margin-top:8px">
+          <span class="headline-chip">AWS Solutions Architect — Associate (SAA) · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk)</span>
+        </div>
 
-  <div class="hero-ctas">
-    <a href="resume.pdf" target="_blank" class="cta-btn cta-primary">Download Resume</a>
-    <a href="#projects" class="cta-btn cta-secondary">See Projects</a>
-  </div>
-</section>
+        <!-- CTAs (aligned, glowing blue primary) -->
+        <div class="hero-ctas">
+          <a href="resume.pdf" target="_blank" class="cta-btn cta-primary">Download Resume</a>
+          <a href="#projects" class="cta-btn cta-secondary">See Projects</a>
+        </div>
+      </div>
+    </section>
 
-<!-- ABOUT -->
-<section id="about" class="glass">
-  <h3>About</h3>
-  <p>
-    I design and deploy production-grade AWS architectures, focusing on reliability, security and cost optimization.  
-    I use Terraform for IaC, automate deployments using Jenkins/GitLab CI, and implement observability stacks with Prometheus, Grafana and Splunk.
-  </p>
-</section>
+    <!-- GRID -->
+    <div class="grid">
+      <main>
+        <section id="about" class="glass reveal delay-1">
+          <h3>About</h3>
+          <p class="muted" style="margin-top:10px">
+            I design and deploy production-grade AWS architectures, focusing on reliability, security and cost optimization. I use Terraform for IaC, automate deployments using Jenkins/GitLab CI, and implement observability stacks with Prometheus, Grafana and Splunk.
+          </p>
+        </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="glass">
-  <h3>Featured Projects</h3><br>
+        <section id="projects" class="glass reveal delay-2" style="margin-top:18px">
+          <h3>Featured Projects</h3>
 
-  <div class="proj-item">
-    <div class="proj-icon" style="background:#0077b6">TF</div>
-    <h4>Terraform Multi-env Modules</h4>
-    <p>Reusable modules: VPC, EC2, RDS, IAM & Security Groups with Terragrunt environment separation.</p>
-    <a style="color:#00c8ff;" href="#">GitHub → (add repo link)</a>
-  </div>
+          <div class="projects" style="margin-top:12px">
+            <div class="project">
+              <div class="icon">TF</div>
+              <div>
+                <strong>Terraform Multi-env Modules</strong>
+                <p class="small muted" style="margin-top:6px">Reusable modules: VPC, EC2, RDS, IAM & Security Groups with Terragrunt environment separation.</p>
+                <a href="#" class="small" style="color:var(--accent1)">GitHub → (add repo link)</a>
+              </div>
+            </div>
 
-  <div class="proj-item">
-    <div class="proj-icon" style="background:#00bfa6">CI</div>
-    <h4>CI/CD: Maven → Jenkins → Tomcat</h4>
-    <p>Jenkins pipelines to build, test, and deploy WARs with artifacts stored on S3.</p>
-    <a style="color:#00c8ff;" href="#">Pipeline → (add link)</a>
-  </div>
+            <div class="project">
+              <div class="icon">CI</div>
+              <div>
+                <strong>CI/CD: Maven → Jenkins → Tomcat</strong>
+                <p class="small muted" style="margin-top:6px">Jenkins pipelines to build, test, and deploy WARs with artifacts stored on S3.</p>
+                <a href="#" class="small" style="color:var(--accent1)">Pipeline → (add link)</a>
+              </div>
+            </div>
 
-  <div class="proj-item">
-    <div class="proj-icon" style="background:#005f73">OBS</div>
-    <h4>Monitoring & Logging</h4>
-    <p>Prometheus + Grafana dashboards, CloudWatch integration and Splunk forwarders for centralized logs & alerts.</p>
-    <a style="color:#00c8ff;" href="#">Dashboards → (add link)</a>
-  </div>
-</section>
+            <div class="project">
+              <div class="icon">OBS</div>
+              <div>
+                <strong>Monitoring & Logging</strong>
+                <p class="small muted" style="margin-top:6px">Prometheus + Grafana dashboards, CloudWatch integration and Splunk forwarders for centralized logs & alerts.</p>
+                <a href="#" class="small" style="color:var(--accent1)">Dashboards → (add link)</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<!-- SKILLS -->
-<section id="skills" class="glass">
-  <h3>Skills & Tools</h3>
-  <div>
-    <span class="skill-chip">AWS (SAA)</span>
-    <span class="skill-chip">Terraform</span>
-    <span class="skill-chip">Linux</span>
-    <span class="skill-chip">Docker</span>
-    <span class="skill-chip">Jenkins</span>
-    <span class="skill-chip">GitLab CI</span>
-    <span class="skill-chip">Prometheus</span>
-    <span class="skill-chip">Grafana</span>
-    <span class="skill-chip">Splunk</span>
-    <span class="skill-chip">Python</span>
-  </div>
-</section>
+        <section id="skills" class="glass reveal delay-3" style="margin-top:18px">
+          <h3>Skills & Tools</h3>
+          <div class="skills">
+            <div class="skill-badge">AWS (SAA)</div>
+            <div class="skill-badge">Terraform</div>
+            <div class="skill-badge">Linux</div>
+            <div class="skill-badge">Docker</div>
+            <div class="skill-badge">Jenkins</div>
+            <div class="skill-badge">GitLab CI</div>
+            <div class="skill-badge">Prometheus</div>
+            <div class="skill-badge">Grafana</div>
+            <div class="skill-badge">Splunk</div>
+            <div class="skill-badge">Python</div>
+          </div>
+        </section>
+      </main>
 
-<!-- CERTIFICATIONS -->
-<section id="certs" class="glass">
-  <h3>Certifications</h3>
+      <aside>
+        <section id="certs" class="glass reveal delay-2">
+          <h3>Certifications</h3>
 
-  <div class="cert-row">
+          <div class="cert-row">
+            <div>
+              <a class="cert-card" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
+                <img src="saa.png" alt="AWS Solutions Architect Associate" class="cert-img"/>
+              </a>
+              <div class="cert-text">AWS Solutions Architect — Associate (SAA)</div>
+              <div class="contact-small" style="text-align:center;margin-top:6px">Exam code: <strong>SAA-C03</strong></div>
+              <a class="verify-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
+            </div>
 
-    <div>
-      <a class="cert-card"
-         href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url"
-         target="_blank">
-        <img src="saa.png" class="cert-img" alt="SAA Badge">
-      </a>
-      <div class="cert-text">AWS Solutions Architect — Associate</div>
-      <a class="verify-link"
-         href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url"
-         target="_blank">Verify on Credly →</a>
+            <div>
+              <a class="cert-card" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
+                <img src="ccp.png" alt="AWS Cloud Practitioner" class="cert-img"/>
+              </a>
+              <div class="cert-text">AWS Certified Cloud Practitioner</div>
+              <div class="contact-small" style="text-align:center;margin-top:6px">Exam code: <strong>CLF-C02</strong></div>
+              <a class="verify-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">Verify on Credly →</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="glass reveal delay-3" style="margin-top:18px">
+          <h3>Contact</h3>
+          <div class="contact-small" style="margin-top:8px">Email: <strong>your-email@example.com</strong></div>
+          <div class="contact-small">LinkedIn: <a href="#" target="_blank">Add LinkedIn</a></div>
+          <div class="contact-small">Location: Hyderabad, India</div>
+        </section>
+      </aside>
     </div>
 
-    <div>
-      <a class="cert-card"
-         href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url"
-         target="_blank">
-        <img src="ccp.png" class="cert-img" alt="CCP Badge">
-      </a>
-      <div class="cert-text">AWS Certified Cloud Practitioner</div>
-      <a class="verify-link"
-         href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url"
-         target="_blank">Verify on Credly →</a>
-    </div>
-
+    <footer>© <span id="year"></span> Kamatham Simon Daniel — Built with ❤️</footer>
   </div>
-</section>
 
-<footer>
-  © 2025 Simon  — Built with ♥
-</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
+  // smooth nav scroll
+  document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+</script>
 </body>
 </html>
