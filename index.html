@@ -73,7 +73,18 @@
   .hero{margin-top:22px;border-radius:16px;overflow:hidden;position:relative;display:flex;align-items:center;padding:36px 34px;height:460px;border:1px solid rgba(255,255,255,0.02);
         box-shadow: 0 18px 48px rgba(2,8,20,0.52); background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008));}
   .hero-inner{max-width:880px;z-index:6;text-align:left;position:relative}
-  h1{font-size:clamp(30px, 6vw, 52px);margin:0 0 8px 0;line-height:1.02;letter-spacing:-0.6px; font-weight:800; background: linear-gradient(90deg,var(--accent-b),var(--accent-a)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  /* UPDATED: make name plain white for max contrast */
+  h1{
+    font-size:clamp(30px, 6vw, 52px);
+    margin:0 0 8px 0;
+    line-height:1.02;
+    letter-spacing:-0.6px;
+    font-weight:800;
+    color: #ffffff;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+  }
   .headline-sub{color:var(--muted);font-size:clamp(13px,2.2vw,15px);margin-bottom:12px}
   .headline-chip{
     display:inline-block;padding:10px 16px;border-radius:999px;background: linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08));
@@ -97,11 +108,25 @@
 
   .hero-ctas{margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .cta-btn{padding:11px 18px;border-radius:999px;font-weight:800;font-size:14px;transition:transform .18s,box-shadow .18s,opacity .18s;display:inline-block;backdrop-filter: blur(var(--glass-blur));border:1px solid rgba(255,255,255,0.04)}
+  /* UPDATED: full gradient button with white text and hover slide */
   .cta-primary{
     background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
-    color:#04121a; box-shadow: 0 12px 36px rgba(99,102,241,0.12);
+    background-size: 200% 100%;
+    background-position: 0% 0%;
+    color: #ffffff;
+    font-weight:800;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 999px;
+    box-shadow: 0 12px 36px rgba(99,102,241,0.12);
+    display: inline-block;
+    transition: transform .18s, box-shadow .18s, background-position .45s cubic-bezier(.2,.9,.2,1);
   }
-  .cta-primary:hover{transform:translateY(-6px) scale(1.02); box-shadow: 0 22px 60px rgba(99,102,241,0.18)}
+  .cta-primary:hover{
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 22px 60px rgba(99,102,241,0.18);
+    background-position: 100% 0%;
+  }
   .cta-secondary{
     background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
     color:var(--muted);
