@@ -54,18 +54,21 @@
   .hero-inner{max-width:880px;z-index:2;text-align:left}
   h1{font-size:clamp(28px, 5vw, 46px);margin:0 0 8px 0;line-height:1.02;letter-spacing:-0.5px}
   .headline-sub{color:var(--muted);font-size:clamp(13px,2.2vw,15px);margin-bottom:12px}
+
+  /* **INCREASED CHIP SIZE & BETTER WRAP** */
   .headline-chip{
     display:inline-block;
-    padding:10px 14px;
+    padding:12px 18px;
     border-radius:999px;
     background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(8,146,178,0.08));
     color:#dff8fb;
     font-weight:700;
     border:1px solid rgba(255,255,255,0.03);
-    font-size:13px;
-    max-width:84%;
+    font-size: clamp(15px, 1.6vw, 18px); /* made bigger */
+    max-width:88%;
     white-space:normal;
     line-height:1.25;
+    letter-spacing: -0.2px;
   }
 
   /* hero background container with picture element */
@@ -139,6 +142,7 @@
     .cert-item{width:48%}
     .navlinks{gap:8px;font-size:13px}
     .wrap{padding:14px}
+    .headline-chip{font-size:15px} /* ensure chip fits on small screens */
   }
 </style>
 </head>
@@ -175,9 +179,9 @@
         <h1>Simon</h1>
         <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready Cloud infrastructure and automation.</div>
         <div style="margin-top:10px">
-          <!-- improved chip text (removed '—' and SAA) -->
+          <!-- UPDATED CHIP TEXT (bigger) -->
           <span class="headline-chip">
-            AWS Solutions Architect · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk)
+            AWS Solutions Architect Associate · AWS Certified Cloud Practitioner · Terraform · CI/CD (Jenkins) · Observability (Prometheus, Grafana, Splunk)
           </span>
         </div>
         <div class="hero-ctas">
