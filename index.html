@@ -8,155 +8,262 @@
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <style>
   :root{
-    --bg:#061025; --panel:#0b1624; --muted:#9fb0c1; --accent:#06b6d4;
-    --glass:rgba(255,255,255,0.03);
+    --bg-dark:#050714;
+    --panel:#0b1220;
+    --muted:#9fb0c1;
+    --accent:#06b6d4;
+    --glass-1: rgba(255,255,255,0.03);
+    --glass-2: rgba(255,255,255,0.02);
+    --card-border: rgba(255,255,255,0.06);
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,system-ui,Arial;background:
-    radial-gradient(900px 500px at 10% 10%, rgba(6,182,212,0.04), transparent),
-    linear-gradient(180deg,#041226 0%, #071229 60%);
-    color:#e8f3fb;line-height:1.5}
-  .container{max-width:1080px;margin:40px auto;padding:24px}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:
+    linear-gradient(180deg,#041226 0%, #071229 50%), var(--bg-dark);
+    color:#e8f3fb;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:28px auto;padding:20px}
 
-  /* Header */
-  header{display:flex;align-items:center;gap:18px;animation:fadeInUp .8s ease both}
-  .avatar{width:92px;height:92px;border-radius:16px;background:linear-gradient(135deg,#06b6d4,#0891b2);
-    display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:#04121a}
-  h1{margin:0;font-size:34px}
-  .sub{margin-top:4px;color:var(--muted);font-size:15px}
-  .hero-actions{margin-top:14px;display:flex;gap:10px}
-  .btn{background:linear-gradient(90deg,var(--accent),#0891b2);color:#04121a;
-    padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+  /* NAV */
+  nav{position:sticky;top:10px;z-index:40;backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(6px);
+      background:linear-gradient(180deg, rgba(4,8,12,0.35), rgba(4,8,12,0.15));
+      border-radius:12px;padding:10px 16px;display:flex;align-items:center;gap:18px;box-shadow:0 6px 20px rgba(2,6,12,0.6)}
+  .brand{font-weight:800;letter-spacing:0.2px}
+  .navlinks{margin-left:auto;display:flex;gap:14px;align-items:center}
+  .navlinks a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600}
+  .navlinks a:hover{background:rgba(255,255,255,0.02);color:#fff}
 
-  /* Sections */
-  .card{
-    background:linear-gradient(180deg,var(--panel),rgba(8,16,24,0.6));
-    padding:20px;border-radius:14px;box-shadow:0 10px 30px rgba(2,6,12,0.6);
-    margin-top:20px;animation:fadeInUp 1s ease both
+  /* HERO */
+  .hero{
+    margin-top:18px;border-radius:16px;overflow:hidden;position:relative;height:420px;
+    background-image: url(''); /* leave empty so user can replace with big bg file */
+    background-color: linear-gradient(180deg,#071229,#041226);
+    display:flex;align-items:center;
+    background-size:cover;background-position:center;
   }
-  h3{margin:0 0 10px}
+  .hero-gradient{position:absolute;inset:0;background:linear-gradient(120deg, rgba(4,12,20,0.35), rgba(6,18,28,0.6));mix-blend-mode:multiply}
+  .hero-inner{position:relative;padding:44px;max-width:900px}
+  h1{font-size:44px;margin:0 0 8px 0;line-height:1.02}
+  .lead{color:var(--muted);font-size:16px;margin-bottom:14px}
+  .hero-ctas{display:flex;gap:10px}
+  .btn{background:linear-gradient(90deg,var(--accent),#0891b2);color:#04121a;padding:10px 16px;border-radius:10px;font-weight:700}
+  .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+  /* GRID content */
+  .grid{display:grid;grid-template-columns:1fr 420px;gap:22px;margin-top:22px}
+  @media(max-width:980px){.grid{grid-template-columns:1fr}}
+
+  /* GLASS CARD */
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid var(--card-border);border-radius:14px;padding:18px;box-shadow:0 12px 30px rgba(2,6,12,0.6);
+    backdrop-filter: blur(8px) saturate(120%);-webkit-backdrop-filter:blur(8px) saturate(120%);
+  }
+  .card h3{margin:0 0 8px 0}
   p,li{color:var(--muted)}
 
-  /* Skills */
-  .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-  .chip{padding:8px 12px;border-radius:999px;background:var(--glass);color:var(--muted);font-weight:600}
+  /* projects list */
+  .projects{display:grid;gap:12px}
+  .project-row{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:rgba(255,255,255,0.01)}
+  .proj-icon{width:72px;height:72px;border-radius:10px;background:#032033;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800}
 
-  /* Projects */
-  .proj{display:flex;gap:12px;background:var(--glass);padding:12px;border-radius:12px;
-    transition:transform .25s}
-  .proj:hover{transform:translateY(-4px)}
-  .proj-icon{width:70px;height:70px;background:#032033;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#06b6d4}
+  /* certs (no backing rectangle) */
+  .cert-grid{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:12px}
+  .cert{
+    display:block;border-radius:12px;padding:6px;transition:transform .22s,box-shadow .22s
+  }
+  .cert img{display:block;width:220px;height:auto;border-radius:10px;box-shadow:0 14px 36px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.04)}
+  .cert .label{margin-top:8px;color:var(--muted);text-align:center;font-weight:700}
 
-  /* Certifications (big + clickable) */
-  .cert-row{display:flex;gap:24px;align-items:center;margin-top:14px;flex-wrap:wrap}
-  .cert-link{display:block;border-radius:14px;padding:10px;background:linear-gradient(180deg,#071827,#071226);box-shadow:0 10px 30px rgba(2,6,12,0.5);transition:transform .25s, box-shadow .25s}
-  .cert-link:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(2,6,12,0.7)}
-  .cert-img{display:block;max-width:220px;width:100%;height:auto;border-radius:10px}
-  .cert-label{margin-top:8px;color:var(--muted);font-weight:700;text-align:center}
+  /* skills */
+  .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .badge{padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:999px;color:var(--muted);font-weight:700;border:1px solid rgba(255,255,255,0.03)}
 
-  /* responsive */
-  @media(max-width:880px){
-    .avatar{width:78px;height:78px;font-size:28px}
-    .cert-row{justify-content:center}
-    .cert-img{max-width:160px}
+  /* floating assistant bubble */
+  .assistant{
+    position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;gap:12px;align-items:flex-end;
+  }
+  .assistant .bubble{
+    max-width:520px;background:linear-gradient(180deg, rgba(2,6,12,0.9), rgba(2,6,12,0.85));color:#fff;padding:14px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.6);font-size:14px
+  }
+  .assistant .avatar{
+    width:62px;height:62px;border-radius:999px;background:linear-gradient(135deg,#06b6d4,#0891b2);display:flex;align-items:center;justify-content:center;font-weight:800;color:#04121a;font-size:18px;border:4px solid rgba(255,255,255,0.03)
   }
 
-  footer{text-align:center;margin-top:40px;color:var(--muted);font-size:14px}
-  @keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  /* footer */
+  footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px;padding:20px 0}
+
+  /* small tweaks */
+  .muted{color:var(--muted)}
+  .small{font-size:13px}
+
+  /* animations */
+  .reveal{opacity:0;transform:translateY(12px);animation:revealUp .6s ease forwards}
+  .reveal.delay-1{animation-delay:.12s}.delay-2{animation-delay:.24s}.delay-3{animation-delay:.36s}
+  @keyframes revealUp{to{opacity:1;transform:none}}
+
+  @media(max-width:720px){
+    h1{font-size:30px}
+    .hero{height:320px;padding:18px}
+    .cert img{max-width:160px}
+  }
 </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="avatar">SD</div>
-      <div>
-        <h1>Kamatham Simon Daniel</h1>
-        <p class="sub">Cloud & DevOps Engineer • AWS Solutions Architect (Associate) • Cloud Practitioner — Hyderabad, IN</p>
-        <div class="hero-actions">
-          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
-        </div>
+
+  <div class="wrap">
+    <nav class="reveal">
+      <div class="brand">Kamatham Simon Daniel</div>
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="resume.pdf" target="_blank" class="btn" style="padding:8px 12px;margin-left:10px">Resume</a>
       </div>
-    </header>
+    </nav>
 
-    <section class="card">
-      <h3>About Me</h3>
-      <p>I design and deploy production-ready cloud architectures on AWS. My strengths include Terraform, CI/CD pipelines, monitoring & observability, and secure, cost-conscious designs for real-world workloads.</p>
-
-      <h4 style="margin-top:14px">Core Work</h4>
-      <ul>
-        <li>Infrastructure as Code with Terraform & Terragrunt</li>
-        <li>CI/CD: Maven → Jenkins → Tomcat, artifact storage (S3)</li>
-        <li>Monitoring & Logging: Prometheus, Grafana, CloudWatch, Splunk</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h3>Featured Projects</h3>
-
-      <div class="proj" style="margin-top:12px">
-        <div class="proj-icon">TF</div>
-        <div>
-          <strong>Terraform Multi-Environment Modules</strong>
-          <p>Reusable modules for VPC, EC2, RDS, IAM & Security Groups with environment isolation (dev/test/prod).</p>
-        </div>
-      </div>
-
-      <div class="proj">
-        <div class="proj-icon">CI</div>
-        <div>
-          <strong>CI/CD: Maven → Jenkins → Tomcat</strong>
-          <p>Automated build/test, artifact upload to S3, and continuous deployment to Apache Tomcat/EC2.</p>
-        </div>
-      </div>
-
-      <div class="proj">
-        <div class="proj-icon">OBS</div>
-        <div>
-          <strong>Monitoring & Logging Stack</strong>
-          <p>Prometheus + Grafana dashboards, CloudWatch metrics, and Splunk for centralized logging & alerting.</p>
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="hero" style="background-image: linear-gradient(120deg, rgba(10,16,26,0.55), rgba(10,16,26,0.45)), url('');">
+      <div class="hero-gradient"></div>
+      <div class="hero-inner">
+        <h1 class="reveal">Kamatham Simon Daniel</h1>
+        <div class="lead reveal delay-1">Cloud & DevOps Engineer — Infrastructure as Code, CI/CD, Observability</div>
+        <div class="hero-ctas reveal delay-2">
+          <a class="btn" href="resume.pdf" target="_blank">Download Resume</a>
+          <a class="btn secondary" href="#projects">See Projects</a>
         </div>
       </div>
     </section>
 
-    <section class="card">
-      <h3>Skills & Tools</h3>
-      <div class="skills" style="margin-top:10px">
-        <div class="chip">AWS (SAA)</div>
-        <div class="chip">Terraform</div>
-        <div class="chip">Linux</div>
-        <div class="chip">Docker</div>
-        <div class="chip">Jenkins</div>
-        <div class="chip">GitLab CI</div>
-        <div class="chip">Prometheus</div>
-        <div class="chip">Grafana</div>
-        <div class="chip">Splunk</div>
-        <div class="chip">Python</div>
-      </div>
-    </section>
+    <!-- GRID: main + sidebar -->
+    <div class="grid">
+      <main>
+        <!-- ABOUT -->
+        <section id="about" class="card reveal delay-1">
+          <h3>About</h3>
+          <p>I design and deploy production-grade AWS architectures. I specialise in Terraform modules, CI/CD automation (Jenkins / GitLab CI), monitoring & observability (Prometheus, Grafana, CloudWatch, Splunk) and cost-focused secure designs.</p>
 
-    <section class="card">
-      <h3>Certifications</h3>
+          <div style="margin-top:12px">
+            <strong>What I do</strong>
+            <ul>
+              <li>Infrastructure as Code with Terraform & Terragrunt</li>
+              <li>CI/CD: Maven → Jenkins → Tomcat, artifact storage (S3)</li>
+              <li>Monitoring & Logging: Prometheus, Grafana, Splunk</li>
+            </ul>
+          </div>
+        </section>
 
-      <div class="cert-row">
-        <!-- Solutions Architect — clickable to Credly -->
-        <a class="cert-link" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener noreferrer" title="AWS Solutions Architect — Associate (SAA)">
-          <img src="saa.png" alt="AWS Solutions Architect Associate badge" class="cert-img"/>
-          <div class="cert-label">AWS Solutions Architect — Associate (SAA)</div>
-        </a>
+        <!-- Projects -->
+        <section id="projects" class="card reveal delay-2">
+          <h3>Featured Projects</h3>
+          <div class="projects">
+            <div class="project-row">
+              <div class="proj-icon">TF</div>
+              <div>
+                <strong>Terraform Multi-env Modules</strong>
+                <p class="muted small">Reusable modules: VPC, EC2, RDS, IAM, Security Groups with Terragrunt environment separation.</p>
+                <a href="#" class="small">GitHub → (add repo link)</a>
+              </div>
+            </div>
 
-        <!-- Cloud Practitioner -->
-        <a class="cert-link" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener noreferrer" title="AWS Certified Cloud Practitioner">
-          <img src="ccp.png" alt="AWS Cloud Practitioner badge" class="cert-img"/>
-          <div class="cert-label">AWS Certified Cloud Practitioner</div>
-        </a>
-      </div>
-    </section>
+            <div class="project-row">
+              <div class="proj-icon">CI</div>
+              <div>
+                <strong>CI/CD: Maven → Jenkins → Tomcat</strong>
+                <p class="muted small">Jenkins pipelines to build, test, and deploy WARs to Tomcat with artifact storage on S3.</p>
+                <a href="#" class="small">Pipeline → (add link)</a>
+              </div>
+            </div>
+
+            <div class="project-row">
+              <div class="proj-icon">OBS</div>
+              <div>
+                <strong>Monitoring & Logging</strong>
+                <p class="muted small">Prometheus + Grafana dashboards, CloudWatch integration and Splunk forwarders for centralized logs & alerts.</p>
+                <a href="#" class="small">Dashboards → (add link)</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="card reveal delay-3">
+          <h3>Skills & Tools</h3>
+          <div class="skills">
+            <div class="badge">AWS (SAA)</div>
+            <div class="badge">Terraform</div>
+            <div class="badge">Linux</div>
+            <div class="badge">Docker</div>
+            <div class="badge">Jenkins</div>
+            <div class="badge">GitLab CI</div>
+            <div class="badge">Prometheus</div>
+            <div class="badge">Grafana</div>
+            <div class="badge">Splunk</div>
+            <div class="badge">Python</div>
+          </div>
+        </section>
+
+        <!-- certifications anchor to show below in right column visually too -->
+        <div style="height:18px"></div>
+      </main>
+
+      <!-- RIGHT: Sidebar cards like Shreyas -->
+      <aside>
+        <div class="card reveal delay-2">
+          <h3 style="margin-bottom:8px">Profile Highlights</h3>
+          <p class="muted small">AWS Solutions Architect (SAA) • Cloud Practitioner • Terraform practitioner • CI/CD & Observability</p>
+
+          <div style="margin-top:14px">
+            <strong>Availability</strong>
+            <p class="muted small">Based in Hyderabad — open to remote & hybrid roles.</p>
+          </div>
+        </div>
+
+        <div id="certs" class="card reveal delay-3">
+          <h3>Certifications</h3>
+
+          <div class="cert-grid">
+            <a class="cert" href="https://www.credly.com/badges/8b759d7a-ba51-4165-a12b-acff622c292d/public_url" target="_blank" rel="noopener">
+              <img src="saa.png" alt="AWS Solutions Architect Associate" />
+              <div class="label">AWS Solutions Architect — Associate (SAA)</div>
+            </a>
+
+            <a class="cert" href="https://www.credly.com/badges/4fbb4230-5a11-4a26-b03b-1a4037b1fa1a/public_url" target="_blank" rel="noopener">
+              <img src="ccp.png" alt="AWS Cloud Practitioner" />
+              <div class="label">AWS Certified Cloud Practitioner</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="card reveal delay-3" style="margin-top:18px">
+          <h3>Contact</h3>
+          <p class="muted small">Email: <strong>your-email@example.com</strong></p>
+          <p class="muted small">LinkedIn: <a href="#" target="_blank">Add LinkedIn</a></p>
+        </div>
+      </aside>
+    </div>
 
     <footer>© <span id="year"></span> Kamatham Simon Daniel — Built with ❤️</footer>
   </div>
 
+  <!-- assistant bubble -->
+  <div class="assistant" aria-hidden="false">
+    <div class="bubble">Hi — I'm Simon's AI assistant. Ask about projects, skills, or certifications.</div>
+    <div class="avatar">SD</div>
+  </div>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  // Smooth scroll for nav links
+  document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
 </script>
 </body>
 </html>
