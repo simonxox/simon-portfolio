@@ -19,6 +19,8 @@
     --accent-b:#7c3aed;    /* violet */
     --accent-c:#ff7ab6;    /* pink */
     --accent-d:#00c2a8;    /* teal */
+    --btn-blue-1: rgba(6,182,212,0.18);
+    --btn-blue-2: rgba(3,105,161,0.12);
     --card-stroke: rgba(255,255,255,0.06);
     --maxw:1180px;
     --content-gap:22px;
@@ -116,26 +118,24 @@
 
   .cta-btn{padding:11px 18px;border-radius:999px;font-weight:800;font-size:14px;transition:transform .18s,box-shadow .18s,opacity .18s;display:inline-block;backdrop-filter: blur(var(--glass-blur));border:1px solid rgba(255,255,255,0.04)}
 
-  /* Glassy, light, semi-transparent resume button — no hover movement */
+  /* Glassy blue resume button — semi-transparent, blue tint, no hover movement */
   .cta-primary{
-    /* glassy translucent background */
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    background: linear-gradient(180deg, var(--btn-blue-1), var(--btn-blue-2));
     color:#ffffff;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(6,182,212,0.18);
     backdrop-filter: blur(6px) saturate(120%);
-    box-shadow: 0 8px 28px rgba(3,10,18,0.45);
+    box-shadow: 0 10px 34px rgba(6,182,212,0.06), inset 0 -6px 18px rgba(255,255,255,0.02);
     padding: 12px 20px;
     border-radius: 999px;
     font-weight:800;
     /* prevent movement on hover */
     transform: none !important;
-    transition: background-position .45s cubic-bezier(.2,.9,.2,1);
+    transition: background-position .45s cubic-bezier(.2,.9,.2,1), box-shadow .25s;
   }
-  /* keep subtle visual change on hover but no translate/scale */
+  /* subtle hover glow but no translate/scale */
   .cta-primary:hover{
-    box-shadow: 0 10px 34px rgba(3,10,18,0.5);
+    box-shadow: 0 14px 44px rgba(6,182,212,0.10), inset 0 -6px 18px rgba(255,255,255,0.03);
     cursor: pointer;
-    /* do not change transform */
     transform: none !important;
   }
 
@@ -263,7 +263,7 @@
           </span>
         </div>
         <div class="hero-ctas">
-          <!-- keep floaty class present but it won't move (CSS override above) -->
+          <!-- blue, glassy, non-moving button -->
           <a href="resume.pdf" target="_blank" class="cta-btn cta-primary floaty" rel="noopener">Download Resume</a>
           <a href="#projects" class="cta-btn cta-secondary">See Projects</a>
         </div>
