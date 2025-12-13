@@ -15,16 +15,15 @@
     --muted:#9fb0c1;
     --accent-a:#06b6d4;   /* blue (Credly link) */
     --accent-b:#7c3aed;
-    /* stronger blue button */
-    --btn-blue-1: rgba(3,105,180,0.18);
-    --btn-blue-2: rgba(2,82,150,0.20);
-    --btn-border-blue: rgba(3,115,200,0.36);
-    --chip-bg: rgba(255,255,255,0.015);
+    --btn-blue-1: rgba(3,105,180,0.22);
+    --btn-blue-2: rgba(2,82,150,0.28);
+    --btn-border-blue: rgba(3,115,200,0.45);
+    --chip-bg: rgba(255,255,255,0.010);
     --chip-border: rgba(255,255,255,0.06);
-    --chip-sheen: linear-gradient(120deg, rgba(255,255,255,0.20), rgba(255,255,255,0.02));
-    --card-bg: rgba(255,255,255,0.008);
+    --chip-sheen: linear-gradient(120deg, rgba(255,255,255,0.22), rgba(255,255,255,0.03));
+    --card-bg: rgba(255,255,255,0.006);
     --card-border: rgba(255,255,255,0.03);
-    --glass-blur: 16px;
+    --glass-blur: 18px;
     --maxw:1180px;
     --content-gap:22px;
     --transition: 300ms cubic-bezier(.2,.9,.2,1);
@@ -59,28 +58,29 @@
 
   .headline-sub{color:var(--muted);font-size:clamp(13px,2.2vw,15px);margin-bottom:12px}
 
+  /* glossy transparent chip (more subtle) */
   .headline-chip{
-    display:inline-block;padding:10px 18px;border-radius:999px;background: var(--chip-bg);color:#e9fbff;font-weight:800;border:1px solid var(--chip-border);font-size:13px;line-height:1.25;backdrop-filter: blur(12px) saturate(170%);box-shadow: 0 18px 40px rgba(3,10,18,0.6), inset 0 1px 0 rgba(255,255,255,0.02);position:relative;overflow:hidden;max-width:900px;display:block;
+    display:inline-block;padding:10px 18px;border-radius:999px;background: var(--chip-bg);color:#e9fbff;font-weight:800;border:1px solid var(--chip-border);font-size:13px;line-height:1.25;backdrop-filter: blur(10px) saturate(150%);box-shadow: 0 14px 30px rgba(3,10,18,0.5), inset 0 1px 0 rgba(255,255,255,0.02);position:relative;overflow:hidden;max-width:900px;display:block;opacity:0.98;
   }
-  .headline-chip::before{content:"";position:absolute;left:-18%;top:-40%;width:136%;height:64%;background: var(--chip-sheen);opacity:0.34;transform:rotate(-14deg);pointer-events:none;mix-blend-mode:overlay}
+  .headline-chip::before{content:"";position:absolute;left:-18%;top:-40%;width:136%;height:64%;background: var(--chip-sheen);opacity:0.26;transform:rotate(-14deg);pointer-events:none;mix-blend-mode:overlay}
   .headline-chip strong{color:#fff}
 
   .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
   .hero-bg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06) translateY(-8px);filter:contrast(0.92) saturate(1.15)}
   .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(4,18,26,0.58), rgba(4,18,26,0.58));z-index:2}
-  .hero-bg::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background-image:radial-gradient(1.6px 1.6px at 8% 16%, rgba(255,255,255,0.95), transparent 30%),radial-gradient(1px 1px at 48% 36%, rgba(255,255,255,0.85), transparent 30%);background-repeat:repeat;opacity:0.14;mix-blend-mode:screen;animation:drift 48s linear infinite}
+  .hero-bg::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background-image:radial-gradient(1.6px 1.6px at 8% 16%, rgba(255,255,255,0.95), transparent 30%),radial-gradient(1px 1px at 48% 36%, rgba(255,255,255,0.85), transparent 30%);background-repeat:repeat;opacity:0.12;mix-blend-mode:screen;animation:drift 48s linear infinite}
   @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-260px)}}
 
   .hero-ctas{margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .cta-btn{padding:11px 18px;border-radius:999px;font-weight:800;font-size:14px;display:inline-block;backdrop-filter: blur(10px);border:1px solid rgba(255,255,255,0.04);transition:box-shadow var(--transition)}
-  /* stronger blue resume button */
+  /* strong blue, no translate/move */
   .cta-primary{
     background: linear-gradient(180deg, var(--btn-blue-1), var(--btn-blue-2));
-    color:#fff;border:1px solid var(--btn-border-blue);box-shadow:0 22px 56px rgba(2,90,150,0.12), inset 0 -6px 18px rgba(255,255,255,0.02);padding:12px 22px;font-weight:800;transform:none !important;animation:none !important;
+    color:#fff;border:1px solid var(--btn-border-blue);box-shadow:0 22px 56px rgba(2,90,150,0.14), inset 0 -6px 18px rgba(255,255,255,0.02);padding:12px 22px;font-weight:800;transform:none !important;animation:none !important;will-change:box-shadow;
   }
-  .cta-primary:hover{box-shadow:0 28px 70px rgba(2,90,150,0.18);transform:none !important;cursor:pointer}
+  .cta-primary:hover{box-shadow:0 28px 70px rgba(2,90,150,0.20);cursor:pointer}
   .cta-secondary{background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));color:var(--muted)}
-  .cta-secondary:hover{color:#fff;border-color:rgba(255,255,255,0.06);transform:none !important}
+  .cta-secondary:hover{color:#fff;border-color:rgba(255,255,255,0.06)}
 
   .grid{display:grid;grid-template-columns:1fr 360px;gap:var(--content-gap);margin-top:26px}
   @media(max-width:980px){.grid{grid-template-columns:1fr;padding-bottom:18px}}
@@ -101,9 +101,9 @@
   .skills{ display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:10px; margin-top:12px; align-items:start; }
   .skill-badge{ padding:10px 12px; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.03); color:var(--muted); font-weight:700; box-shadow: inset 0 -4px 8px rgba(255,255,255,0.01); }
 
-  /* CONTACT inline email+copy */
+  /* CONTACT inline email+copy (copy button immediately after email) */
   .contact-small{margin-top:12px;color:var(--muted);font-size:13px}
-  .copy-wrap{display:flex;align-items:center;gap:10px;margin-top:6px}
+  .copy-wrap{display:flex;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
   .email-col{display:flex;align-items:center;gap:10px}
   .email-text{color:var(--muted);font-weight:800;background:transparent}
   .copy-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); color:var(--muted);font-weight:800;font-size:13px;cursor:pointer;height:40px;transition:all .22s}
@@ -111,13 +111,13 @@
   .copy-btn.copied{background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#04121a;border-color:transparent;box-shadow:0 10px 34px rgba(6,182,212,0.08)}
 
   /* CERTS: center items and glassy verify link */
-  .certs-grid{display:flex;flex-direction:column;gap:12px;align-items:center}    /* centered the whole grid */
-  .cert-row{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;justify-content:center;align-items:center}  /* center the row */
-  .cert-item{width:200px;text-align:center;padding:12px;border-radius:12px;background: linear-gradient(180deg, rgba(255,255,255,0.006), rgba(255,255,255,0.002));border:1px solid rgba(255,255,255,0.02);display:flex;flex-direction:column;align-items:center;justify-content:center;backdrop-filter: blur(10px); }
-  .cert-img{max-width:96px;border-radius:6px;display:block;margin:6px auto 10px}
+  .certs-grid{display:flex;flex-direction:column;gap:12px;align-items:center}
+  .cert-row{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;justify-content:center;align-items:center}
+  .cert-item{width:220px;text-align:center;padding:14px;border-radius:12px;background: linear-gradient(180deg, rgba(255,255,255,0.006), rgba(255,255,255,0.002));border:1px solid rgba(255,255,255,0.02);display:flex;flex-direction:column;align-items:center;justify-content:center;backdrop-filter: blur(10px); }
+  .cert-img{max-width:110px;border-radius:8px;display:block;margin:8px auto 12px}
   .cert-text{font-weight:800;color:var(--muted);margin-bottom:6px;font-size:14px;text-align:center}
-  .verify-link{display:inline-block;margin-top:6px;font-size:13px;color:var(--accent-a);font-weight:800;text-decoration:none;padding:6px 10px;border-radius:8px;background: linear-gradient(90deg, rgba(6,182,212,0.04), rgba(124,58,237,0.02));border:1px solid rgba(6,182,212,0.06);transition:transform .14s,color .14s}
-  .verify-link:hover{color:#fff;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));transform:translateY(-2px)}
+  .verify-link{display:inline-block;margin-top:6px;font-size:13px;color:var(--accent-a);font-weight:800;text-decoration:none;padding:8px 12px;border-radius:10px;background: linear-gradient(90deg, rgba(6,182,212,0.04), rgba(124,58,237,0.02));border:1px solid rgba(6,182,212,0.06);transition:transform .14s,color .14s}
+  .verify-link:hover{color:#fff;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));transform:none}
 
   footer{text-align:center;margin-top:28px;color:var(--muted);font-size:13px;padding:18px 0}
 
@@ -166,7 +166,7 @@
         <div class="headline-sub">Cloud & DevOps Engineer — I build production-ready Cloud infrastructure and automation.</div>
 
         <div style="margin-top:10px">
-          <span class="headline-chip">
+          <span class="headline-chip" aria-hidden="true">
             AWS Solutions Architect Associate · AWS Certified Cloud Practitioner · Terraform · CI/CD · Observability · Kubernetes · Docker
           </span>
         </div>
@@ -228,8 +228,10 @@
 
         <section id="skills" class="glass reveal delay-3" style="margin-top:18px">
           <h3>Skills & Tools</h3>
-          <div class="skills">
-            <div class="skill-badge">AWS, GCP, Azure</div>
+          <div class="skills" aria-hidden="false">
+            <div class="skill-badge">AWS</div>
+            <div class="skill-badge">GCP</div>
+            <div class="skill-badge">Azure</div>
             <div class="skill-badge">Terraform</div>
             <div class="skill-badge">Kubernetes</div>
             <div class="skill-badge">Docker</div>
